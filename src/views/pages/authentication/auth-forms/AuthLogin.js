@@ -150,8 +150,9 @@ const FirebaseLogin = ({ loginProp, ...others }) => {
                         const token = response.data.access_token;
                         const decoded = jwtDecode(token);
 
-                        localStorage.setItem('user_id', token.user_id);
+                        localStorage.setItem('user_id', decoded.user_id);
                         localStorage.setItem('email_address', decoded.email_address);
+                        localStorage.setItem('token', token);
                         localStorage.setItem('isLoggedIn', true);
                         if (scriptedRef.current) {
                             setStatus({ success: true });
