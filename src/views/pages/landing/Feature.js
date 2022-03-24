@@ -66,7 +66,7 @@ const FeaturePage = () => {
                                             </Avatar>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Typography variant="h3">Beautiful User Interface</Typography>
+                                            <Typography variant="h3">Facial Recognition</Typography>
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Typography variant="body2">
@@ -98,7 +98,7 @@ const FeaturePage = () => {
                                             </Avatar>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Typography variant="h3">Modern Technology Stack</Typography>
+                                            <Typography variant="h3">RFID Technology</Typography>
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Typography variant="body2">
@@ -130,7 +130,7 @@ const FeaturePage = () => {
                                             </Avatar>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Typography variant="h3">Performance Centric</Typography>
+                                            <Typography variant="h3">Fingerprint Identification</Typography>
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Typography variant="body2">

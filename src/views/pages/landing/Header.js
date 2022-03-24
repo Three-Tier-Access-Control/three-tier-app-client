@@ -69,10 +69,8 @@ const HeaderPage = () => {
                                         lineHeight: 1.4
                                     }}
                                 >
-                                    Build Your Next Project With
-                                    <Box component="span" sx={{ ml: 2, color: theme.palette.primary.main }}>
-                                        Get Security
-                                    </Box>
+                                    Better Solutions for your Business
+                                    {/* <Box component="span" sx={{ ml: 2, color: theme.palette.primary.main }}></Box> */}
                                 </Typography>
                             </motion.div>
                         </Grid>
@@ -142,7 +140,7 @@ const HeaderPage = () => {
                                 </Grid>
                             </motion.div>
                         </Grid>
-                        <Grid item xs={12}>
+                        {/* <Grid item xs={12}>
                             <motion.div
                                 initial={{ opacity: 0, translateY: 550 }}
                                 animate={{ opacity: 1, translateY: 0 }}
@@ -212,7 +210,7 @@ const HeaderPage = () => {
                                     </Grid>
                                 </Grid>
                             </motion.div>
-                        </Grid>
+                        </Grid> */}
                     </Grid>
                 </Grid>
                 <Grid item xs={12} md={7} sx={{ display: { xs: 'none', md: 'flex' } }}>

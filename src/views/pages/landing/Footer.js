@@ -10,7 +10,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
-import logoDark from 'assets/images/logo-white.svg';
+import logoDark from 'assets/images/logo.png';
 
 // styles
 const FooterWrapper = styled('div')(({ theme }) => ({
@@ -67,19 +67,19 @@ const FooterPage = () => {
                                 sx={{ justifyContent: 'flex-end', [theme.breakpoints.down('md')]: { justifyContent: 'center' } }}
                             >
                                 <Grid item>
-                                    <FooterLink href="https://blog.berrydashboard.io/" target="_blank" underline="hover">
+                                    <FooterLink href="#" target="_blank" underline="hover">
                                         <InstagramIcon />
                                         Blog
                                     </FooterLink>
                                 </Grid>
                                 <Grid item>
-                                    <FooterLink href="https://www.facebook.com/codedthemes" target="_blank" underline="hover">
+                                    <FooterLink href="#" target="_blank" underline="hover">
                                         <FacebookIcon />
                                         Facebook
                                     </FooterLink>
                                 </Grid>
                                 <Grid item>
-                                    <FooterLink href="https://twitter.com/codedthemes" target="_blank" underline="hover">
+                                    <FooterLink href="#" target="_blank" underline="hover">
                                         <TwitterIcon />
                                         Twitter
                                     </FooterLink>
@@ -92,7 +92,7 @@ const FooterPage = () => {
             <FooterSubWrapper>
                 <Container>
                     <Typography variant="subtitle2" component="div" color="inherit">
-                        &#169; CodedThemes
+                        &#169; Get Security
                     </Typography>
                 </Container>
             </FooterSubWrapper>
