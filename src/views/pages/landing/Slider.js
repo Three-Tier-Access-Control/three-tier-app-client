@@ -29,8 +29,8 @@ const Item = ({ item }) => (
     <Grid container alignItems="center" justifyContent="center" spacing={3} textAlign="center">
         <Grid item xs={11}>
             <Box sx={{ width: '100%', position: 'relative' }}>
-                <img src={item.bg} alt="Berry" style={{ width: '100%' }} />
-                <LayoutImage src={item.image} alt="Berry" />
+                <img src={item.bg} alt="Get Security" style={{ width: '100%' }} />
+                <LayoutImage src={item.image} alt="Get Security" />
             </Box>
         </Grid>
         <Grid item xs={10}>

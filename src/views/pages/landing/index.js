@@ -39,7 +39,7 @@ const Landing = () => (
         <SecondWrapper>
             <Feature />
         </SecondWrapper>
-        <SecondWrapper>
+        {/* <SecondWrapper>
             <Demos />
         </SecondWrapper>
         <SecondWrapper>
@@ -50,7 +50,7 @@ const Landing = () => (
         </SecondWrapper>
         <SecondWrapper>
             <Subscribe />
-        </SecondWrapper>
+        </SecondWrapper> */}
         <Footer />
         <Customization />
     </>

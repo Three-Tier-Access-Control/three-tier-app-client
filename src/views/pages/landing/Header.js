@@ -14,7 +14,8 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 import { gridSpacing } from 'store/constant';
 
 // assets
-import dashboard from 'assets/images/landing/dashboard.png';
+// import dashboard from 'assets/images/landing/dashboard.png';
+import dashboard from 'assets/images/security.webp';
 import widget1 from 'assets/images/landing/widget-1.png';
 import widget2 from 'assets/images/landing/widget-2.png';
 
@@ -70,7 +71,7 @@ const HeaderPage = () => {
                                 >
                                     Build Your Next Project With
                                     <Box component="span" sx={{ ml: 2, color: theme.palette.primary.main }}>
-                                        Berry
+                                        Get Security
                                     </Box>
                                 </Typography>
                             </motion.div>
@@ -96,7 +97,8 @@ const HeaderPage = () => {
                                         lineHeight: 1.4
                                     }}
                                 >
-                                    Berry is React based admin template which helps you to build faster and beautiful web applications.
+                                    Get Security is React based admin template which helps you to build faster and beautiful web
+                                    applications.
                                 </Typography>
                             </motion.div>
                         </Grid>
@@ -215,8 +217,8 @@ const HeaderPage = () => {
                 </Grid>
                 <Grid item xs={12} md={7} sx={{ display: { xs: 'none', md: 'flex' } }}>
                     <Box sx={{ position: 'relative', mt: 8.75 }}>
-                        <HeaderImage src={dashboard} alt="Berry" />
-                        <Box
+                        <HeaderImage src={dashboard} alt="Get Security" />
+                        {/* <Box
                             sx={{
                                 position: 'absolute',
                                 top: '-110px',
@@ -235,7 +237,7 @@ const HeaderPage = () => {
                                     delay: 0.2
                                 }}
                             >
-                                <HeaderAnimationImage src={widget1} alt="Berry" />
+                                <HeaderAnimationImage src={widget1} alt="Get Security" />
                             </motion.div>
                         </Box>
                         <Box
@@ -258,9 +260,9 @@ const HeaderPage = () => {
                                     delay: 0.4
                                 }}
                             >
-                                <HeaderAnimationImage src={widget2} alt="Berry" />
+                                <HeaderAnimationImage src={widget2} alt="Get Security" />
                             </motion.div>
-                        </Box>
+                        </Box> */}
                     </Box>
                 </Grid>
             </Grid>

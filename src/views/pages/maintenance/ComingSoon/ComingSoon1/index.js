@@ -160,8 +160,8 @@ const ComingSoon1 = () => {
                             transform: 'rotate(145deg)'
                         }}
                     />
-                    {theme.palette.mode === 'light' && <img src={logo} alt="Berry" width="100" />}
-                    {theme.palette.mode === 'dark' && <img src={logoDark} alt="Berry" width="100" />}
+                    {theme.palette.mode === 'light' && <img src={logo} alt="Get Security" width="100" />}
+                    {theme.palette.mode === 'dark' && <img src={logoDark} alt="Get Security" width="100" />}
                 </CardContent>
                 <Grid container spacing={gridSpacing}>
                     <Grid item xs={12}>
@@ -198,7 +198,7 @@ const ComingSoon1 = () => {
                                     <Grid container spacing={2}>
                                         <Grid item xs={12}>
                                             <Typography variant="h1" component="div">
-                                                Berry - The React Admin Template
+                                                Get Security - The React Admin Template
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={12}>
@@ -411,7 +411,7 @@ const ComingSoon1 = () => {
                                                             </Typography>
                                                         </Grid>
                                                         <Grid item>
-                                                            <img src={companyLogo} alt="Berry" width="128" />
+                                                            <img src={companyLogo} alt="Get Security" width="128" />
                                                         </Grid>
                                                     </Grid>
                                                 </Grid>

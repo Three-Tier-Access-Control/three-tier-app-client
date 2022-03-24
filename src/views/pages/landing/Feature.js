@@ -34,12 +34,12 @@ const FeaturePage = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant="h2" component="div">
-                                What Berry brings to you?
+                                What Get Security brings to you?
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant="body2">
-                                Berry is a solid dashboard template for your next project, with the following top features.
+                                Get Security is a solid dashboard template for your next project, with the following top features.
                             </Typography>
                         </Grid>
                     </Grid>
@@ -102,8 +102,8 @@ const FeaturePage = () => {
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Typography variant="body2">
-                                                Technology behind Berry is less complicated so you can focus on creating the actual web
-                                                applications.
+                                                Technology behind Get Security is less complicated so you can focus on creating the actual
+                                                web applications.
                                             </Typography>
                                         </Grid>
                                     </Grid>

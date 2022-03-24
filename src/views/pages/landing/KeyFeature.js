@@ -45,7 +45,7 @@ const KeyFeaturePage = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant="h2" component="div">
-                                Know more about Berry
+                                Know more about Get Security
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
@@ -253,7 +253,7 @@ const KeyFeaturePage = () => {
                                     target="_blank"
                                     variant="contained"
                                 >
-                                    Get Berry
+                                    Get Get Security
                                 </Button>
                             </AnimateButton>
                         </Grid>
