@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -37,24 +37,18 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import Google from 'assets/images/icons/social-google.svg';
+import jwtDecode from 'jwt-decode';
+import axios from 'axios';
+import handleAxiosError from 'utils/handleAxiosErrors';
+import { SNACKBAR_OPEN } from 'store/actions';
 
-// ============================|| FIREBASE - LOGIN ||============================ //
+// ============================|| LOGIN ||============================ //
 
 const FirebaseLogin = ({ loginProp, ...others }) => {
     const theme = useTheme();
     const scriptedRef = useScriptRef();
-    const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
-    const customization = useSelector((state) => state.customization);
-    const [checked, setChecked] = useState(true);
-
-    const { firebaseEmailPasswordSignIn, firebaseGoogleSignIn } = useAuth();
-    const googleHandler = async () => {
-        try {
-            await firebaseGoogleSignIn();
-        } catch (err) {
-            console.error(err);
-        }
-    };
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => {
@@ -68,7 +62,7 @@ const FirebaseLogin = ({ loginProp, ...others }) => {
     return (
         <>
             <Grid container direction="column" justifyContent="center" spacing={2}>
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
                     <AnimateButton>
                         <Button
                             disableElevation
@@ -88,8 +82,8 @@ const FirebaseLogin = ({ loginProp, ...others }) => {
                             Sign in with Google
                         </Button>
                     </AnimateButton>
-                </Grid>
-                <Grid item xs={12}>
+                </Grid> */}
+                {/* <Grid item xs={12}>
                     <Box
                         sx={{
                             alignItems: 'center',
@@ -121,68 +115,108 @@ const FirebaseLogin = ({ loginProp, ...others }) => {
 
                         <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
                     </Box>
-                </Grid>
-                <Grid item xs={12} container alignItems="center" justifyContent="center">
+                </Grid> */}
+                {/* <Grid item xs={12} container alignItems="center" justifyContent="center">
                     <Box sx={{ mb: 2 }}>
                         <Typography variant="subtitle1">Sign in with Email address</Typography>
                     </Box>
-                </Grid>
+                </Grid> */}
             </Grid>
 
             <Formik
                 initialValues={{
-                    email: 'info@codedthemes.com',
-                    password: '123456',
+                    username: '',
+                    password: '',
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({
-                    email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+                    username: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
                     password: Yup.string().max(255).required('Password is required')
                 })}
-                onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
+                onSubmit={async (values, { setErrors, setStatus, setSubmitting, resetForm }) => {
                     try {
-                        await firebaseEmailPasswordSignIn(values.email, values.password).then(
-                            () => {
-                                // WARNING: do not set any formik state here as formik might be already destroyed here. You may get following error by doing so.
-                                // Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application.
-                                // To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
-                                // github issue: https://github.com/formium/formik/issues/2430
-                            },
-                            (err) => {
-                                if (scriptedRef.current) {
-                                    setStatus({ success: false });
-                                    setErrors({ submit: err.message });
-                                    setSubmitting(false);
-                                }
-                            }
-                        );
-                    } catch (err) {
-                        console.error(err);
+                        const { username, password } = values;
+                        const response = await axios.post(`${process.env.REACT_APP_BASE_URL_PRODUCTION}auth/login`, {
+                            username,
+                            password
+                        });
+                        const token = response.data.access_token;
+                        const decoded = jwtDecode(token);
+
+                        localStorage.setItem('user_id', token.user_id);
+                        localStorage.setItem('email_address', decoded.email_address);
+                        localStorage.setItem('isLoggedIn', true);
                         if (scriptedRef.current) {
-                            setStatus({ success: false });
-                            setErrors({ submit: err.message });
+                            setStatus({ success: true });
                             setSubmitting(false);
+                        }
+                        resetForm({});
+                        dispatch({
+                            type: SNACKBAR_OPEN,
+                            open: true,
+                            message: 'Login successful!',
+                            variant: 'alert',
+                            alertSeverity: 'success'
+                        });
+                        navigate('/dashboard');
+                    } catch (error) {
+                        const errorMsg = handleAxiosError(error);
+                        if (Array.isArray(errorMsg)) {
+                            errorMsg.map((error) =>
+                                dispatch({
+                                    type: SNACKBAR_OPEN,
+                                    open: true,
+                                    message: error,
+                                    variant: 'alert',
+                                    alertSeverity: 'error',
+                                    anchorOrigin: {
+                                        vertical: 'top',
+                                        horizontal: 'right'
+                                    }
+                                })
+                            );
+                        } else {
+                            dispatch({
+                                type: SNACKBAR_OPEN,
+                                open: true,
+                                message: errorMsg,
+                                variant: 'alert',
+                                alertSeverity: 'error',
+                                anchorOrigin: {
+                                    vertical: 'top',
+                                    horizontal: 'right'
+                                }
+                            });
+                            if (scriptedRef.current) {
+                                setStatus({ success: false });
+                                setErrors({ submit: errorMsg });
+                                setSubmitting(false);
+                            }
                         }
                     }
                 }}
             >
                 {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                     <form noValidate onSubmit={handleSubmit} {...others}>
-                        <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-                            <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
+                        <FormControl
+                            fullWidth
+                            error={Boolean(touched.username && errors.username)}
+                            sx={{ ...theme.typography.customInput }}
+                        >
+                            <InputLabel htmlFor="outlined-adornment-username-login">Email Address</InputLabel>
                             <OutlinedInput
-                                id="outlined-adornment-email-login"
+                                id="outlined-adornment-username-login"
                                 type="email"
-                                value={values.email}
-                                name="email"
+                                value={values.username}
+                                name="username"
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                label="Email Address / Username"
+                                label="Email Address"
                                 inputProps={{}}
                             />
-                            {touched.email && errors.email && (
-                                <FormHelperText error id="standard-weight-helper-text-email-login">
-                                    {errors.email}
+                            {touched.username && errors.username && (
+                                <FormHelperText error id="standard-weight-helper-text-username-login">
+                                    {errors.username}
                                 </FormHelperText>
                             )}
                         </FormControl>
@@ -222,32 +256,7 @@ const FirebaseLogin = ({ loginProp, ...others }) => {
                                 </FormHelperText>
                             )}
                         </FormControl>
-                        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        checked={checked}
-                                        onChange={(event) => setChecked(event.target.checked)}
-                                        name="checked"
-                                        color="primary"
-                                    />
-                                }
-                                label="Remember me"
-                            />
-                            <Typography
-                                variant="subtitle1"
-                                component={Link}
-                                to={
-                                    loginProp
-                                        ? `/pages/forgot-password/forgot-password${loginProp}`
-                                        : '/pages/forgot-password/forgot-password3'
-                                }
-                                color="secondary"
-                                sx={{ textDecoration: 'none' }}
-                            >
-                                Forgot Password?
-                            </Typography>
-                        </Stack>
+
                         {errors.submit && (
                             <Box sx={{ mt: 3 }}>
                                 <FormHelperText error>{errors.submit}</FormHelperText>
