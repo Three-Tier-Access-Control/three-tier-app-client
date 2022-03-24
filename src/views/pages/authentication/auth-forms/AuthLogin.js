@@ -41,6 +41,7 @@ import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import handleAxiosError from 'utils/handleAxiosErrors';
 import { SNACKBAR_OPEN } from 'store/actions';
+import qs from 'qs';
 
 // ============================|| LOGIN ||============================ //
 
@@ -136,10 +137,16 @@ const FirebaseLogin = ({ loginProp, ...others }) => {
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting, resetForm }) => {
                     try {
                         const { username, password } = values;
-                        const response = await axios.post(`${process.env.REACT_APP_BASE_URL_PRODUCTION}auth/login`, {
-                            username,
-                            password
-                        });
+                        const options = {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                            data: qs.stringify({
+                                username,
+                                password
+                            }),
+                            url: `${process.env.REACT_APP_BASE_URL_PRODUCTION}auth/login`
+                        };
+                        const response = await axios(options);
                         const token = response.data.access_token;
                         const decoded = jwtDecode(token);
 

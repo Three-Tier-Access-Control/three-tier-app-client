@@ -1,6 +1,5 @@
 const handleAxiosError = (error) => {
     if (error.response) {
-        console.log(error.response);
         if (error.response.data.message) {
             return error.response.data.message;
         }
