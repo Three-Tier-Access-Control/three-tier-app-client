@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -39,19 +39,22 @@ import User1 from 'assets/images/users/user-round.svg';
 
 // assets
 import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
+import { LOGOUT_USER } from 'store/actions';
 
 // ==============================|| PROFILE MENU ||============================== //
 
 const ProfileSection = () => {
     const theme = useTheme();
     const customization = useSelector((state) => state.customization);
+    const user = useSelector((state) => state.user);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [sdm, setSdm] = useState(true);
     const [value, setValue] = useState('');
     const [notification, setNotification] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(-1);
-    const { logout, user } = useAuth();
+    // const { logout } = useAuth();
     const [open, setOpen] = useState(false);
     /**
      * anchorRef is used on different componets and specifying one type leads to other components throwing an error
@@ -59,7 +62,9 @@ const ProfileSection = () => {
     const anchorRef = useRef(null);
     const handleLogout = async () => {
         try {
-            await logout();
+            await dispatch({
+                type: LOGOUT_USER
+            });
         } catch (err) {
             console.error(err);
         }
@@ -163,81 +168,17 @@ const ProfileSection = () => {
                                     <Box sx={{ p: 2 }}>
                                         <Stack>
                                             <Stack direction="row" spacing={0.5} alignItems="center">
-                                                <Typography variant="h4">Good Morning,</Typography>
+                                                <Typography variant="h4">Hi,</Typography>
                                                 <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
-                                                    {user?.name}
+                                                    {user?.emailAddress}
                                                 </Typography>
                                             </Stack>
-                                            <Typography variant="subtitle2">Project Admin</Typography>
+                                            <Typography variant="subtitle2">Admin User</Typography>
                                         </Stack>
-                                        <OutlinedInput
-                                            sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}
-                                            id="input-search-profile"
-                                            value={value}
-                                            onChange={(e) => setValue(e.target.value)}
-                                            placeholder="Search profile options"
-                                            startAdornment={
-                                                <InputAdornment position="start">
-                                                    <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />
-                                                </InputAdornment>
-                                            }
-                                            aria-describedby="search-helper-text"
-                                            inputProps={{
-                                                'aria-label': 'weight'
-                                            }}
-                                        />
                                         <Divider />
                                     </Box>
                                     <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
                                         <Box sx={{ p: 2 }}>
-                                            <UpgradePlanCard />
-                                            <Divider />
-                                            <Card
-                                                sx={{
-                                                    bgcolor:
-                                                        theme.palette.mode === 'dark'
-                                                            ? theme.palette.dark[800]
-                                                            : theme.palette.primary.light,
-                                                    my: 2
-                                                }}
-                                            >
-                                                <CardContent>
-                                                    <Grid container spacing={3} direction="column">
-                                                        <Grid item>
-                                                            <Grid item container alignItems="center" justifyContent="space-between">
-                                                                <Grid item>
-                                                                    <Typography variant="subtitle1">Start DND Mode</Typography>
-                                                                </Grid>
-                                                                <Grid item>
-                                                                    <Switch
-                                                                        color="primary"
-                                                                        checked={sdm}
-                                                                        onChange={(e) => setSdm(e.target.checked)}
-                                                                        name="sdm"
-                                                                        size="small"
-                                                                    />
-                                                                </Grid>
-                                                            </Grid>
-                                                        </Grid>
-                                                        <Grid item>
-                                                            <Grid item container alignItems="center" justifyContent="space-between">
-                                                                <Grid item>
-                                                                    <Typography variant="subtitle1">Allow Notifications</Typography>
-                                                                </Grid>
-                                                                <Grid item>
-                                                                    <Switch
-                                                                        checked={notification}
-                                                                        onChange={(e) => setNotification(e.target.checked)}
-                                                                        name="sdm"
-                                                                        size="small"
-                                                                    />
-                                                                </Grid>
-                                                            </Grid>
-                                                        </Grid>
-                                                    </Grid>
-                                                </CardContent>
-                                            </Card>
-                                            <Divider />
                                             <List
                                                 component="nav"
                                                 sx={{
