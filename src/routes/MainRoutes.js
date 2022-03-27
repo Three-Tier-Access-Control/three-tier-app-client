@@ -493,7 +493,7 @@ const MainRoutes = {
             element: <SamplePage />
         },
         {
-            path: '/dashboard/default',
+            path: '/dashboard',
             element: <DashboardDefault />
         },
         {
