@@ -45,6 +45,7 @@ const LatestEmployeesCard = ({ title, employeesData }) => (
                 <TableHead>
                     <TableRow>
                         <TableCell sx={{ pl: 3 }}>#</TableCell>
+                        <TableCell>ID</TableCell>
                         <TableCell>Full Name</TableCell>
                         <TableCell>Email Address</TableCell>
                         <TableCell align="right" sx={{ pr: 3 }}>
@@ -64,6 +65,7 @@ const LatestEmployeesCard = ({ title, employeesData }) => (
                                     sx={{ width: 30, height: 'auto' }}
                                 />
                             </TableCell>
+                            <TableCell>{employee.id}</TableCell>
                             <TableCell>
                                 {employee.first_name} {employee.first_name}
                             </TableCell>
