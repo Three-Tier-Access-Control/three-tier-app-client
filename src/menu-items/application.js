@@ -29,6 +29,12 @@ const application = {
             icon: icons.IconUserCheck,
             children: [
                 {
+                    id: 'add-new-employee',
+                    title: <FormattedMessage id="add-new-employee" />,
+                    type: 'item',
+                    url: '/add-new-employee'
+                },
+                {
                     id: 'posts',
                     title: <FormattedMessage id="social-profile" />,
                     type: 'item',

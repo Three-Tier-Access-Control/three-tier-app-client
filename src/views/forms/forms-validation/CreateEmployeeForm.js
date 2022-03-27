@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 import { Button, Grid, Stack, TextField } from '@mui/material';
@@ -12,6 +12,10 @@ import { gridSpacing } from 'store/constant';
 // third-party
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import handleAxiosError from 'utils/handleAxiosErrors';
+import qs from 'qs';
+import axios from 'api/axios';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * 'Enter your email'
@@ -19,14 +23,15 @@ import * as yup from 'yup';
 const validationSchema = yup.object({
     firstName: yup.string().required('First Name is required'),
     lastName: yup.string().required('Last Name is required'),
-    emailAddress: yup.string().email('Enter a valid email').required('Email is required'),
-    passwordInstant: yup.string().min(8, 'Password should be of minimum 8 characters length').required('Password is required')
+    emailAddress: yup.string().email('Enter a valid email').required('Email is required')
 });
 
 // ==============================|| FORM VALIDATION - INSTANT FEEDBACK FORMIK  ||============================== //
 
 const CreateEmployeeForm = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const accessToken = useSelector((state) => state.user.accessToken);
 
     const formik = useFormik({
         initialValues: {
@@ -42,14 +47,80 @@ const CreateEmployeeForm = () => {
             city: ''
         },
         validationSchema,
-        onSubmit: async () => {
-            dispatch({
-                type: SNACKBAR_OPEN,
-                open: true,
-                message: 'On Leave - Submit Success',
-                variant: 'alert',
-                alertSeverity: 'success'
-            });
+        onSubmit: async (values, { setErrors, setStatus, setSubmitting }) => {
+            try {
+                const {
+                    firstName,
+                    lastName,
+                    emailAddress,
+                    phoneNumber,
+                    department,
+                    profileImage,
+                    role,
+                    nationalID,
+                    streetAddress,
+                    city
+                } = values;
+
+                const options = {
+                    method: 'POST',
+                    // headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
+
+                    data: qs.stringify({
+                        first_name: firstName,
+                        last_name: lastName,
+                        email_address: emailAddress,
+                        phone_number: phoneNumber,
+                        profile_image: profileImage,
+                        national_id: nationalID,
+                        street_address: streetAddress,
+                        department,
+                        role,
+                        city
+                    }),
+                    url: '/employees'
+                };
+                const response = await axios(options);
+
+                dispatch({
+                    type: SNACKBAR_OPEN,
+                    open: true,
+                    message: 'Employee successfully Created!',
+                    variant: 'alert',
+                    alertSeverity: 'success'
+                });
+                navigate('/dashboard');
+            } catch (error) {
+                const errorMsg = handleAxiosError(error);
+                if (Array.isArray(errorMsg)) {
+                    errorMsg.map((error) =>
+                        dispatch({
+                            type: SNACKBAR_OPEN,
+                            open: true,
+                            message: error,
+                            variant: 'alert',
+                            alertSeverity: 'error',
+                            anchorOrigin: {
+                                vertical: 'top',
+                                horizontal: 'right'
+                            }
+                        })
+                    );
+                } else {
+                    dispatch({
+                        type: SNACKBAR_OPEN,
+                        open: true,
+                        message: errorMsg,
+                        variant: 'alert',
+                        alertSeverity: 'error',
+                        anchorOrigin: {
+                            vertical: 'top',
+                            horizontal: 'right'
+                        }
+                    });
+                }
+            }
         }
     });
 
@@ -191,7 +262,7 @@ const CreateEmployeeForm = () => {
                     <Grid item xs={12}>
                         <Stack direction="row" justifyContent="flex-end">
                             <AnimateButton>
-                                <Button variant="contained" type="submit">
+                                <Button variant="contained" type="submit" disabled={formik.isSubmitting}>
                                     Submit
                                 </Button>
                             </AnimateButton>
