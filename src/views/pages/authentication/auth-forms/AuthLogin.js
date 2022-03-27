@@ -38,7 +38,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import Google from 'assets/images/icons/social-google.svg';
 import jwtDecode from 'jwt-decode';
-import axios from 'axios';
+import axios from '../../../../api/axios';
 import handleAxiosError from 'utils/handleAxiosErrors';
 import { SNACKBAR_OPEN } from 'store/actions';
 import qs from 'qs';
@@ -144,7 +144,7 @@ const FirebaseLogin = ({ loginProp, ...others }) => {
                                 username,
                                 password
                             }),
-                            url: `${process.env.REACT_APP_BASE_URL_PRODUCTION}auth/login`
+                            url: 'auth/login'
                         };
                         const response = await axios(options);
                         const token = response.data.access_token;
