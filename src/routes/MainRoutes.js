@@ -61,6 +61,7 @@ const FrmComponentsDateTime = Loadable(lazy(() => import('views/forms/components
 // forms plugins layout
 const FrmLayoutLayout = Loadable(lazy(() => import('views/forms/layouts/Layouts')));
 const FrmLayoutMultiColumnForms = Loadable(lazy(() => import('views/forms/layouts/MultiColumnForms')));
+
 const FrmLayoutActionBar = Loadable(lazy(() => import('views/forms/layouts/ActionBar')));
 const FrmLayoutStickyActionBar = Loadable(lazy(() => import('views/forms/layouts/StickyActionBar')));
 
@@ -83,7 +84,7 @@ const TableStickyHead = Loadable(lazy(() => import('views/forms/tables/TableStic
 const TableCollapsible = Loadable(lazy(() => import('views/forms/tables/TableCollapsible')));
 
 // forms validation
-const FrmFormsValidation = Loadable(lazy(() => import('views/forms/forms-validation')));
+const CreateEmployeeForm = Loadable(lazy(() => import('views/forms/forms-validation')));
 const FrmFormsWizard = Loadable(lazy(() => import('views/forms/forms-wizard')));
 
 // chart routing
@@ -365,10 +366,6 @@ const MainRoutes = {
             element: <ChartApexchart />
         },
         {
-            path: '/forms/forms-validation',
-            element: <FrmFormsValidation />
-        },
-        {
             path: '/forms/forms-wizard',
             element: <FrmFormsWizard />
         },
@@ -495,6 +492,10 @@ const MainRoutes = {
         {
             path: '/dashboard',
             element: <DashboardAnalytics />
+        },
+        {
+            path: '/add-new-employee',
+            element: <CreateEmployeeForm />
         },
         {
             path: '/dashboard/analytics',

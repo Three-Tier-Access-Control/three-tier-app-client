@@ -52,7 +52,7 @@ const Analytics = () => {
     const [videosData, setVideosData] = useState([]);
 
     useEffect(() => {
-        const getAdverts = async () => {
+        const getDashboardData = async () => {
             try {
                 setLoading(true);
                 const employeesResponse = await axios.get('/employees');
@@ -85,7 +85,7 @@ const Analytics = () => {
                 });
             }
         };
-        getAdverts();
+        getDashboardData();
     }, [dispatch]);
 
     return (
