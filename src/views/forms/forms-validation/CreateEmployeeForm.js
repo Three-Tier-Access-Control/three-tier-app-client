@@ -40,7 +40,7 @@ const CreateEmployeeForm = () => {
             emailAddress: '',
             phoneNumber: '',
             department: '',
-            profileImage: null,
+            profileImage: '',
             role: '',
             nationalID: '',
             streetAddress: '',
@@ -64,10 +64,8 @@ const CreateEmployeeForm = () => {
 
                 const options = {
                     method: 'POST',
-                    // headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
-
-                    data: qs.stringify({
+                    data: {
                         first_name: firstName,
                         last_name: lastName,
                         email_address: emailAddress,
@@ -78,10 +76,11 @@ const CreateEmployeeForm = () => {
                         department,
                         role,
                         city
-                    }),
+                    },
                     url: '/employees'
                 };
-                const response = await axios(options);
+
+                await axios(options);
 
                 dispatch({
                     type: SNACKBAR_OPEN,
