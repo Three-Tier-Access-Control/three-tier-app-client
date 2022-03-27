@@ -494,7 +494,7 @@ const MainRoutes = {
         },
         {
             path: '/dashboard',
-            element: <DashboardDefault />
+            element: <DashboardAnalytics />
         },
         {
             path: '/dashboard/analytics',
