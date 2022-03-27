@@ -26,7 +26,7 @@ const validationSchema = yup.object({
     emailAddress: yup.string().email('Enter a valid email').required('Email is required')
 });
 
-// ==============================|| FORM VALIDATION - INSTANT FEEDBACK FORMIK  ||============================== //
+// ==============================|| FORM VALIDATION - ADD NEW EMPLOYEE FORM  ||============================== //
 
 const CreateEmployeeForm = () => {
     const dispatch = useDispatch();
@@ -47,7 +47,7 @@ const CreateEmployeeForm = () => {
             city: ''
         },
         validationSchema,
-        onSubmit: async (values, { setErrors, setStatus, setSubmitting }) => {
+        onSubmit: async (values) => {
             try {
                 const {
                     firstName,
