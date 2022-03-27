@@ -52,3 +52,7 @@ export const DELETE_STORY = '@kanban/DELETE_STORY';
 export const ADD_STORY = '@kanban/ADD_STORY';
 export const EDIT_STORY = '@kanban/EDIT_STORY';
 export const ADD_STORY_COMMENT = '@kanban/ADD_STORY_COMMENT';
+
+// user actions
+export const LOGIN_USER = '@user/LOGIN_USER';
+export const LOGOUT_USER = '@user/LOGOUT_USER';

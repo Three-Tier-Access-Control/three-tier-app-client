@@ -40,7 +40,7 @@ import Google from 'assets/images/icons/social-google.svg';
 import jwtDecode from 'jwt-decode';
 import axios from '../../../../api/axios';
 import handleAxiosError from 'utils/handleAxiosErrors';
-import { SNACKBAR_OPEN } from 'store/actions';
+import { LOGIN_USER, SNACKBAR_OPEN } from 'store/actions';
 import qs from 'qs';
 
 // ============================|| LOGIN ||============================ //
@@ -150,10 +150,19 @@ const FirebaseLogin = ({ loginProp, ...others }) => {
                         const token = response.data.access_token;
                         const decoded = jwtDecode(token);
 
-                        localStorage.setItem('user_id', decoded.user_id);
-                        localStorage.setItem('email_address', decoded.email_address);
-                        localStorage.setItem('token', token);
-                        localStorage.setItem('isLoggedIn', true);
+                        // localStorage.setItem('user_id', decoded.user_id);
+                        // localStorage.setItem('email_address', decoded.email_address);
+                        // localStorage.setItem('token', token);
+                        // localStorage.setItem('isLoggedIn', true);
+
+                        dispatch({
+                            type: LOGIN_USER,
+                            isLoggedIn: true,
+                            userId: decoded.user_id,
+                            emailAddress: decoded.email_address,
+                            accessToken: token
+                        });
+
                         if (scriptedRef.current) {
                             setStatus({ success: true });
                             setSubmitting(false);

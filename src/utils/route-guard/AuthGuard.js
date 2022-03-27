@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // project imports
 import useAuth from 'hooks/useAuth';
@@ -12,7 +13,9 @@ import { useEffect } from 'react';
  * @param {PropTypes.node} children children element/node
  */
 const AuthGuard = ({ children }) => {
-    const { isLoggedIn } = useAuth();
+    // const { isLoggedIn } = useAuth();
+    const { isLoggedIn } = useSelector((state) => state.user);
+
     const navigate = useNavigate();
 
     useEffect(() => {

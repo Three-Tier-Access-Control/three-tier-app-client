@@ -7,6 +7,7 @@ import customizationReducer from './customizationReducer';
 import snackbarReducer from './snackbarReducer';
 import cartReducer from './cartReducer';
 import kanbanReducer from './kanbanReducer';
+import userReducer from './userReducer';
 
 // ==============================|| COMBINE REDUCER ||============================== //
 
@@ -21,7 +22,8 @@ const reducer = combineReducers({
         },
         cartReducer
     ),
-    kanban: kanbanReducer
+    kanban: kanbanReducer,
+    user: userReducer
 });
 
 export default reducer;
