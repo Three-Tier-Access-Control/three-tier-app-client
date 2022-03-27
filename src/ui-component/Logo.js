@@ -22,7 +22,7 @@ const Logo = () => {
         //  * <img src={theme.palette.mode === 'dark' ? logoDark : logo} alt="Get Security" width="100" />
          *
          */
-        <img src={logo} alt="Get Security" width="100" />
+        <img src={logo} alt="Get Security" height="50" />
     );
 };
 
