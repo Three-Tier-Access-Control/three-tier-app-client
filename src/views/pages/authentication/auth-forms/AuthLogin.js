@@ -150,16 +150,13 @@ const FirebaseLogin = ({ loginProp, ...others }) => {
                         const token = response.data.access_token;
                         const decoded = jwtDecode(token);
 
-                        // localStorage.setItem('user_id', decoded.user_id);
-                        // localStorage.setItem('email_address', decoded.email_address);
-                        // localStorage.setItem('token', token);
-                        // localStorage.setItem('isLoggedIn', true);
-
                         dispatch({
                             type: LOGIN_USER,
                             isLoggedIn: true,
                             userId: decoded.user_id,
                             emailAddress: decoded.email_address,
+                            lastName: decoded.last_name,
+                            firstName: decoded.first_name,
                             accessToken: token
                         });
 

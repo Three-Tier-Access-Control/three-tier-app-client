@@ -5,6 +5,8 @@ const initialState = {
     isLoggedIn: true,
     userId: '',
     emailAddress: '',
+    lastName: '',
+    firstName: '',
     accessToken: ''
 };
 
@@ -18,6 +20,8 @@ const userReducer = (state = initialState, action) => {
                 isLoggedIn: action.isLoggedIn ? action.isLoggedIn : initialState.isLoggedIn,
                 userId: action.userId ? action.userId : initialState.userId,
                 emailAddress: action.emailAddress ? action.emailAddress : initialState.emailAddress,
+                lastName: action.lastName ? action.lastName : initialState.lastName,
+                firstName: action.firstName ? action.firstName : initialState.firstName,
                 accessToken: action.accessToken ? action.accessToken : initialState.accessToken
             };
         case actionTypes.LOGOUT_USER: {
