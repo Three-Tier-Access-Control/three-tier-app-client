@@ -69,7 +69,7 @@ const HeaderPage = () => {
                                         lineHeight: 1.4
                                     }}
                                 >
-                                    Multifactor Access Control System
+                                    Three Tier Access Control Security System
                                     {/* <Box component="span" sx={{ ml: 2, color: theme.palette.primary.main }}></Box> */}
                                 </Typography>
                             </motion.div>
