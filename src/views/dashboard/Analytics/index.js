@@ -22,7 +22,7 @@ import axios from '../../../api/axios';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import LatestBadgesCard from './LatestBadgesCard';
-import LatestVideosCard from './LatestVideosCard';
+import LatestFingerprintsCard from './LatestFingerprintsCard';
 
 // ==============================|| ANALYTICS DASHBOARD ||============================== //
 
@@ -42,13 +42,10 @@ const Analytics = () => {
     const [err, setErr] = useState();
     const dispatch = useDispatch();
 
-    const [employeeCount, setEmployeeCount] = useState(0);
-    const [userCount, setUserCount] = useState(0);
     const [fingerprintsData, setFingerprintsData] = useState([]);
     const [employeesData, setEmployeesData] = useState({});
     const [usersData, setUsersData] = useState({});
     const [badgesData, setBadgesData] = useState([]);
-    const [videosData, setVideosData] = useState([]);
 
     useEffect(() => {
         const getDashboardData = async () => {
@@ -205,11 +202,11 @@ const Analytics = () => {
                         </Grid>
                     )}
 
-                    {/* {videosData && videosData.length > 0 && (
+                    {fingerprintsData && fingerprintsData.length > 0 && (
                         <Grid item xs={12} lg={6} md={6}>
-                            <LatestVideosCard title="Latest Videos" videosData={videosData} />
+                            <LatestFingerprintsCard title="Recently Added Fingerprint Records" fingerprintsData={fingerprintsData} />
                         </Grid>
-                    )} */}
+                    )}
                 </>
             )}
         </Grid>
