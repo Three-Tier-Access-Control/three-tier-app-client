@@ -161,7 +161,7 @@ const CreateRFIDBadgeForm = () => {
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <FormControl sx={{ m: 1, minWidth: 120 }}>
+                                    <FormControl fullWidth>
                                         <InputLabel id="employee-select">Employee</InputLabel>
                                         <Select
                                             labelId="employee-select"
