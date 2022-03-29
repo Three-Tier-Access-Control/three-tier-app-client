@@ -12,11 +12,10 @@ import UserCountCard from 'ui-component/cards/UserCountCard';
 import { gridSpacing } from 'store/constant';
 
 // assets
-import { IconShare, IconAccessPoint, IconCircles, IconCreditCard, IconUserPlus, IconUsers, IconUserCheck, IconMovie } from '@tabler/icons';
-import MonetizationOnTwoToneIcon from '@mui/icons-material/MonetizationOnTwoTone';
-import AccountCircleTwoTone from '@mui/icons-material/AccountCircleTwoTone';
-import DescriptionTwoToneIcon from '@mui/icons-material/DescriptionTwoTone';
-import { Headphones, LocalMovies, Movie, Videocam } from '@mui/icons-material';
+import { IconUsers, IconUserCheck, IconMovie } from '@tabler/icons';
+import FingerprintIcon from '@mui/icons-material/Fingerprint';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+import FaceIcon from '@mui/icons-material/Face';
 import handleAxiosError from 'utils/handleAxiosErrors';
 import { SNACKBAR_OPEN } from 'store/actions';
 import axios from '../../../api/axios';
@@ -45,7 +44,7 @@ const Analytics = () => {
 
     const [employeeCount, setEmployeeCount] = useState(0);
     const [userCount, setUserCount] = useState(0);
-    const [analyticsData, setAnalyticsData] = useState({});
+    const [fingerprintsData, setFingerprintsData] = useState([]);
     const [employeesData, setEmployeesData] = useState({});
     const [usersData, setUsersData] = useState({});
     const [badgesData, setBadgesData] = useState([]);
@@ -60,14 +59,10 @@ const Analytics = () => {
                 const fingerprintsResponse = await axios.get('/fingerprints?limit=3');
                 const usersResponse = await axios.get('/users');
 
-                // const response2 = await axios.get(`${process.env.REACT_APP_BASE_URL_PRODUCTION}/newsfeed/recents/`);
-                // const response3 = await axios.get(`${process.env.REACT_APP_BASE_URL_PRODUCTION}/resources/recent-podcasts/`);
-                // const response4 = await axios.get(`${process.env.REACT_APP_BASE_URL_PRODUCTION}/resources/recent-videos/`);
-                // setAnalyticsData(response.data);
                 setEmployeesData(employeesResponse.data);
                 setBadgesData(badgesResponse.data);
+                setFingerprintsData(fingerprintsResponse.data);
                 setUsersData(usersResponse.data);
-                // setVideosData(response4.data.results);
 
                 setLoading(false);
                 setSuccess(true);
@@ -108,28 +103,28 @@ const Analytics = () => {
                         <Grid container spacing={gridSpacing}>
                             <Grid item xs={12} lg={4}>
                                 <RevenueCard
-                                    primary="News Articles"
-                                    secondary={analyticsData?.articles}
-                                    content="Total News Articles"
-                                    iconPrimary={DescriptionTwoToneIcon}
+                                    primary="Badges Enrolled"
+                                    secondary={badgesData?.length}
+                                    content="Total Badges Enrolled"
+                                    iconPrimary={CreditCardIcon}
                                     color={theme.palette.secondary.main}
                                 />
                             </Grid>
                             <Grid item xs={12} lg={4}>
                                 <RevenueCard
-                                    primary="Podcasts"
-                                    secondary={analyticsData?.podcasts}
-                                    content="Total Podcasts"
-                                    iconPrimary={Headphones}
+                                    primary="Fingerprints Enrolled"
+                                    secondary={fingerprintsData?.length}
+                                    content="Total Fingerprints Enrolled"
+                                    iconPrimary={FingerprintIcon}
                                     color={theme.palette.primary.main}
                                 />
                             </Grid>
                             <Grid item xs={12} lg={4}>
                                 <RevenueCard
-                                    primary="Videos"
-                                    secondary={analyticsData?.videos}
-                                    content="Total Videos"
-                                    iconPrimary={IconMovie}
+                                    primary="Faces Indexed"
+                                    secondary={fingerprintsData?.length}
+                                    content="Total Faces Indexed"
+                                    iconPrimary={FaceIcon}
                                     color={theme.palette.orange.dark}
                                 />
                             </Grid>
@@ -197,6 +192,7 @@ const Analytics = () => {
                             </Grid>
                         </Grid>
                     </Grid>
+
                     {employeesData?.employees && employeesData?.employees.length > 0 && (
                         <Grid item xs={12} lg={6} md={6}>
                             <LatestEmployeesCard title="Recently Added Employees" employeesData={employeesData?.employees} />
