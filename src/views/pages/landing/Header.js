@@ -95,8 +95,7 @@ const HeaderPage = () => {
                                         lineHeight: 1.4
                                     }}
                                 >
-                                    Get Security is React based admin template which helps you to build faster and beautiful web
-                                    applications.
+                                    HONORS PROJECT - Ashley Tinashe Shumba (N0161480F)
                                 </Typography>
                             </motion.div>
                         </Grid>
@@ -116,26 +115,15 @@ const HeaderPage = () => {
                                         <AnimateButton>
                                             <Button
                                                 component={RouterLink}
-                                                to="/dashboard/default"
+                                                to="/login"
                                                 target="_blank"
                                                 size="large"
                                                 variant="contained"
                                                 color="secondary"
                                             >
-                                                Live Preview
+                                                Login
                                             </Button>
                                         </AnimateButton>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button
-                                            component={Link}
-                                            href="https://material-ui.com/store/items/berry-react-material-admin/"
-                                            target="_blank"
-                                            size="large"
-                                            variant="text"
-                                        >
-                                            Purchase Now
-                                        </Button>
                                     </Grid>
                                 </Grid>
                             </motion.div>

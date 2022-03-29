@@ -69,23 +69,15 @@ const AppBar = ({ ...others }) => {
                             <Logo />
                         </Typography>
                         <Stack direction="row" sx={{ display: { xs: 'none', sm: 'block' } }} spacing={2}>
-                            <Button color="inherit" component={Link} href="#" target="_blank">
+                            <Button color="inherit" component={Link} href="/">
                                 Home
                             </Button>
-                            <Button color="inherit" component={RouterLink} to="login" target="_blank">
+                            <Button color="inherit" component={RouterLink} to="/dashboard">
                                 Dashboard
                             </Button>
-                            <Button color="inherit" component={Link} href="https://codedthemes.gitbook.io/berry" target="_blank">
-                                Documentation
-                            </Button>
-                            <Button
-                                component={Link}
-                                href="https://material-ui.com/store/items/berry-react-material-admin/"
-                                disableElevation
-                                variant="contained"
-                                color="secondary"
-                            >
-                                Purchase Now
+
+                            <Button component={RouterLink} to="/login" disableElevation variant="contained" color="secondary">
+                                Login
                             </Button>
                         </Stack>
                         <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
