@@ -83,7 +83,7 @@ const LatestBadgesCard = ({ title, badgesData }) => (
         <Divider />
         <CardActions sx={{ justifyContent: 'flex-end' }}>
             <Button component={Link} to="/admin/articles" variant="text" size="small">
-                View all Employees
+                View all RFID Badges
             </Button>
         </CardActions>
     </MainCard>
