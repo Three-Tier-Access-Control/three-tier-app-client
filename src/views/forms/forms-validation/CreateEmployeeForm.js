@@ -124,152 +124,156 @@ const CreateEmployeeForm = () => {
     });
 
     return (
-        <MainCard title="Add New Employee">
-            <form onSubmit={formik.handleSubmit}>
-                <Grid container spacing={gridSpacing}>
-                    <Grid item xs={12} lg={6}>
-                        <TextField
-                            fullWidth
-                            id="firstName"
-                            name="firstName"
-                            label="First Name"
-                            defaultValue={formik.values.firstName}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            error={formik.touched.firstName && Boolean(formik.errors.firstName)}
-                            helperText={formik.touched.firstName && formik.errors.firstName}
-                        />
-                    </Grid>
-                    <Grid item xs={12} lg={6}>
-                        <TextField
-                            fullWidth
-                            id="lastName"
-                            name="lastName"
-                            label="Last Name"
-                            defaultValue={formik.values.lastName}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            error={formik.touched.lastName && Boolean(formik.errors.lastName)}
-                            helperText={formik.touched.lastName && formik.errors.lastName}
-                        />
-                    </Grid>
-                    <Grid item xs={12} lg={6}>
-                        <TextField
-                            fullWidth
-                            id="emailAddress"
-                            name="emailAddress"
-                            label="Email"
-                            defaultValue={formik.values.emailAddress}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            error={formik.touched.emailAddress && Boolean(formik.errors.emailAddress)}
-                            helperText={formik.touched.emailAddress && formik.errors.emailAddress}
-                        />
-                    </Grid>
-                    <Grid item xs={12} lg={6}>
-                        <TextField
-                            fullWidth
-                            id="nationalID"
-                            name="nationalID"
-                            label="National ID"
-                            defaultValue={formik.values.nationalID}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            error={formik.touched.nationalID && Boolean(formik.errors.nationalID)}
-                            helperText={formik.touched.nationalID && formik.errors.nationalID}
-                        />
-                    </Grid>
-                    <Grid item xs={12} lg={6}>
-                        <TextField
-                            fullWidth
-                            id="phoneNumber"
-                            name="phoneNumber"
-                            label="Phone Number"
-                            defaultValue={formik.values.phoneNumber}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
-                            helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
-                        />
-                    </Grid>
-                    <Grid item xs={12} lg={6}>
-                        <TextField
-                            fullWidth
-                            type="file"
-                            id="profileImage"
-                            name="profileImage"
-                            // label="Profile Image"
-                            defaultValue={formik.values.profileImage}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            error={formik.touched.profileImage && Boolean(formik.errors.profileImage)}
-                            helperText={formik.touched.profileImage && formik.errors.profileImage}
-                        />
-                    </Grid>
-                    <Grid item xs={12} lg={6}>
-                        <TextField
-                            fullWidth
-                            id="role"
-                            name="role"
-                            label="Role"
-                            defaultValue={formik.values.role}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            error={formik.touched.role && Boolean(formik.errors.role)}
-                            helperText={formik.touched.role && formik.errors.role}
-                        />
-                    </Grid>
-                    <Grid item xs={12} lg={6}>
-                        <TextField
-                            fullWidth
-                            id="department"
-                            name="department"
-                            label="Department"
-                            defaultValue={formik.values.department}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            error={formik.touched.department && Boolean(formik.errors.department)}
-                            helperText={formik.touched.department && formik.errors.department}
-                        />
-                    </Grid>
-                    <Grid item xs={12} lg={6}>
-                        <TextField
-                            fullWidth
-                            id="streetAddress"
-                            name="streetAddress"
-                            label="Street Address"
-                            defaultValue={formik.values.streetAddress}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            error={formik.touched.streetAddress && Boolean(formik.errors.streetAddress)}
-                            helperText={formik.touched.streetAddress && formik.errors.streetAddress}
-                        />
-                    </Grid>
-                    <Grid item xs={12} lg={6}>
-                        <TextField
-                            fullWidth
-                            id="city"
-                            name="city"
-                            label="City"
-                            defaultValue={formik.values.city}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            error={formik.touched.city && Boolean(formik.errors.city)}
-                            helperText={formik.touched.city && formik.errors.city}
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Stack direction="row" justifyContent="flex-end">
-                            <AnimateButton>
-                                <Button variant="contained" type="submit" disabled={formik.isSubmitting}>
-                                    Submit
-                                </Button>
-                            </AnimateButton>
-                        </Stack>
-                    </Grid>
-                </Grid>
-            </form>
-        </MainCard>
+        <Grid container spacing={gridSpacing}>
+            <Grid item xs={12}>
+                <MainCard title="Add New Employee">
+                    <form onSubmit={formik.handleSubmit}>
+                        <Grid container spacing={gridSpacing}>
+                            <Grid item xs={12} lg={6}>
+                                <TextField
+                                    fullWidth
+                                    id="firstName"
+                                    name="firstName"
+                                    label="First Name"
+                                    defaultValue={formik.values.firstName}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                                    helperText={formik.touched.firstName && formik.errors.firstName}
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6}>
+                                <TextField
+                                    fullWidth
+                                    id="lastName"
+                                    name="lastName"
+                                    label="Last Name"
+                                    defaultValue={formik.values.lastName}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+                                    helperText={formik.touched.lastName && formik.errors.lastName}
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6}>
+                                <TextField
+                                    fullWidth
+                                    id="emailAddress"
+                                    name="emailAddress"
+                                    label="Email"
+                                    defaultValue={formik.values.emailAddress}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.emailAddress && Boolean(formik.errors.emailAddress)}
+                                    helperText={formik.touched.emailAddress && formik.errors.emailAddress}
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6}>
+                                <TextField
+                                    fullWidth
+                                    id="nationalID"
+                                    name="nationalID"
+                                    label="National ID"
+                                    defaultValue={formik.values.nationalID}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.nationalID && Boolean(formik.errors.nationalID)}
+                                    helperText={formik.touched.nationalID && formik.errors.nationalID}
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6}>
+                                <TextField
+                                    fullWidth
+                                    id="phoneNumber"
+                                    name="phoneNumber"
+                                    label="Phone Number"
+                                    defaultValue={formik.values.phoneNumber}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
+                                    helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6}>
+                                <TextField
+                                    fullWidth
+                                    type="file"
+                                    id="profileImage"
+                                    name="profileImage"
+                                    // label="Profile Image"
+                                    defaultValue={formik.values.profileImage}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.profileImage && Boolean(formik.errors.profileImage)}
+                                    helperText={formik.touched.profileImage && formik.errors.profileImage}
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6}>
+                                <TextField
+                                    fullWidth
+                                    id="role"
+                                    name="role"
+                                    label="Role"
+                                    defaultValue={formik.values.role}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.role && Boolean(formik.errors.role)}
+                                    helperText={formik.touched.role && formik.errors.role}
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6}>
+                                <TextField
+                                    fullWidth
+                                    id="department"
+                                    name="department"
+                                    label="Department"
+                                    defaultValue={formik.values.department}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.department && Boolean(formik.errors.department)}
+                                    helperText={formik.touched.department && formik.errors.department}
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6}>
+                                <TextField
+                                    fullWidth
+                                    id="streetAddress"
+                                    name="streetAddress"
+                                    label="Street Address"
+                                    defaultValue={formik.values.streetAddress}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.streetAddress && Boolean(formik.errors.streetAddress)}
+                                    helperText={formik.touched.streetAddress && formik.errors.streetAddress}
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6}>
+                                <TextField
+                                    fullWidth
+                                    id="city"
+                                    name="city"
+                                    label="City"
+                                    defaultValue={formik.values.city}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.city && Boolean(formik.errors.city)}
+                                    helperText={formik.touched.city && formik.errors.city}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Stack direction="row" justifyContent="flex-end">
+                                    <AnimateButton>
+                                        <Button variant="contained" type="submit" disabled={formik.isSubmitting}>
+                                            Submit
+                                        </Button>
+                                    </AnimateButton>
+                                </Stack>
+                            </Grid>
+                        </Grid>
+                    </form>
+                </MainCard>
+            </Grid>
+        </Grid>
     );
 };
 

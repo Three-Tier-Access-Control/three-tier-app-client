@@ -84,7 +84,8 @@ const TableStickyHead = Loadable(lazy(() => import('views/forms/tables/TableStic
 const TableCollapsible = Loadable(lazy(() => import('views/forms/tables/TableCollapsible')));
 
 // forms validation
-const CreateEmployeeForm = Loadable(lazy(() => import('views/forms/forms-validation')));
+const CreateEmployeeForm = Loadable(lazy(() => import('views/forms/forms-validation/CreateEmployeeForm')));
+const CreateRFIDBadgeForm = Loadable(lazy(() => import('views/forms/forms-validation/CreateRFIDBadgeForm')));
 const FrmFormsWizard = Loadable(lazy(() => import('views/forms/forms-wizard')));
 
 // chart routing
@@ -496,6 +497,10 @@ const MainRoutes = {
         {
             path: '/add-new-employee',
             element: <CreateEmployeeForm />
+        },
+        {
+            path: '/add-new-rfid-card',
+            element: <CreateRFIDBadgeForm />
         },
         {
             path: '/dashboard/analytics',

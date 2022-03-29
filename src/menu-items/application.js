@@ -35,6 +35,12 @@ const application = {
                     url: '/add-new-employee'
                 },
                 {
+                    id: 'add-new-rfid-card',
+                    title: <FormattedMessage id="add-new-rfid-card" />,
+                    type: 'item',
+                    url: '/add-new-rfid-card'
+                },
+                {
                     id: 'posts',
                     title: <FormattedMessage id="social-profile" />,
                     type: 'item',
