@@ -41,6 +41,12 @@ const application = {
                     url: '/add-new-rfid-card'
                 },
                 {
+                    id: 'add-new-fingerprint-record',
+                    title: <FormattedMessage id="add-new-fingerprint-record" />,
+                    type: 'item',
+                    url: '/add-new-fingerprint-record'
+                },
+                {
                     id: 'posts',
                     title: <FormattedMessage id="social-profile" />,
                     type: 'item',
