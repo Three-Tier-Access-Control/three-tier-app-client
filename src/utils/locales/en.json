@@ -1,6 +1,6 @@
 {
     "dashboard": "Dashboard",
-    "default": "Default",
+    "default": "Dashboard",
     "analytics": "Analytics",
 
     "widget": "Widget",
@@ -12,8 +12,8 @@
     "users": "Users",
     "social-profile": "Social Profile",
     "add-new-employee": "Add New Employee",
-    "add-new-rfid-card": "Add New RFID Card",
-    "add-new-fingerprint-record": "Add New Fingerprint Record",
+    "add-new-rfid-card": "Create New RFID Card",
+    "add-new-fingerprint-record": "Enroll New Fingerprint",
     "account-profile": "Account Profile",
     "profile": "Profile",
     "cards": "Cards",

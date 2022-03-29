@@ -92,7 +92,7 @@ const CreateFingerprintRecordForm = () => {
                 dispatch({
                     type: SNACKBAR_OPEN,
                     open: true,
-                    message: 'RFID Badge successfully created!',
+                    message: 'Fingerprint Record successfully created!',
                     variant: 'alert',
                     alertSeverity: 'success'
                 });

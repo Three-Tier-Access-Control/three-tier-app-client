@@ -10,6 +10,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import MainCard from 'ui-component/cards/MainCard';
 
 // assets
+import DummyUser from 'assets/images/dummy.png';
 import Flag1 from 'assets/images/widget/AUSTRALIA.jpg';
 import Flag2 from 'assets/images/widget/BRAZIL.jpg';
 import Flag3 from 'assets/images/widget/GERMANY.jpg';
@@ -59,7 +60,7 @@ const LatestEmployeesCard = ({ title, employeesData }) => (
                             <TableCell sx={{ pl: 3 }}>
                                 <CardMedia
                                     component="img"
-                                    image={employee?.profile_image_url}
+                                    image={employee?.profile_image_url || DummyUser}
                                     alt={employee.first_name}
                                     title="image"
                                     sx={{ width: 30, height: 'auto' }}

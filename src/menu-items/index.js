@@ -11,7 +11,8 @@ import other from './other';
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems = {
-    items: [dashboard, widget, application, forms, elements, pages, utilities, support, other]
+    // items: [dashboard, widget, application, forms, elements, pages, utilities, support, other]
+    items: [dashboard, application]
 };
 
 export default menuItems;

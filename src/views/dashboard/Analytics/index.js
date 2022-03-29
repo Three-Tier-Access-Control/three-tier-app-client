@@ -100,9 +100,9 @@ const Analytics = () => {
                         <Grid container spacing={gridSpacing}>
                             <Grid item xs={12} lg={4}>
                                 <RevenueCard
-                                    primary="Badges Enrolled"
+                                    primary="Badges Issued"
                                     secondary={badgesData?.length}
-                                    content="Total Badges Enrolled"
+                                    content="Total Badges Issued"
                                     iconPrimary={CreditCardIcon}
                                     color={theme.palette.secondary.main}
                                 />
