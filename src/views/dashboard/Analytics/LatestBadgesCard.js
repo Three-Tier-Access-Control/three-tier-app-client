@@ -36,42 +36,43 @@ const rows = [
     createData(Flag2, 'United Kingdom', 'Lori Moore', '8.65%')
 ];
 
-// =========================|| DASHBOARD ANALYTICS - LATEST ARTICLES TABLE CARD ||========================= //
+// =========================|| DASHBOARD ANALYTICS - LATEST BADGES TABLE CARD ||========================= //
 
-const LatestEmployeesCard = ({ title, employeesData }) => (
+const LatestBadgesCard = ({ title, badgesData }) => (
     <MainCard title={title} content={false}>
         <TableContainer>
             <Table>
                 <TableHead>
                     <TableRow>
                         <TableCell sx={{ pl: 3 }}>#</TableCell>
-                        <TableCell>ID</TableCell>
-                        <TableCell>Full Name</TableCell>
-                        <TableCell>Email Address</TableCell>
+                        {/* <TableCell>ID</TableCell> */}
+                        <TableCell>UID Tag</TableCell>
+                        <TableCell>Employee</TableCell>
                         <TableCell align="right" sx={{ pr: 3 }}>
                             Date
                         </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {employeesData.map((employee, index) => (
+                    {badgesData.map((badge, index) => (
                         <TableRow hover key={index}>
-                            <TableCell sx={{ pl: 3 }}>
+                            {/* <TableCell sx={{ pl: 3 }}>
                                 <CardMedia
                                     component="img"
-                                    image={employee?.profile_image_url}
-                                    alt={employee.first_name}
+                                    image={badge?.profile_image_url}
+                                    alt={badge.first_name}
                                     title="image"
                                     sx={{ width: 30, height: 'auto' }}
                                 />
-                            </TableCell>
-                            <TableCell>{employee.id}</TableCell>
+                            </TableCell> */}
+                            <TableCell sx={{ pl: 3 }}>{badge.id}</TableCell>
+                            <TableCell>{badge.uid_tag}</TableCell>
+
                             <TableCell>
-                                {employee.first_name} {employee.last_name}
+                                {badge.employee.first_name} {badge.employee.last_name}
                             </TableCell>
-                            <TableCell>{employee.email_address}</TableCell>
                             <TableCell align="right" sx={{ pr: 3 }}>
-                                {format(new Date(employee.created_at), 'E, MMM d yyyy')}
+                                {format(new Date(badge.created_at), 'E, MMM d yyyy')}
                             </TableCell>
                         </TableRow>
                     ))}
@@ -88,9 +89,9 @@ const LatestEmployeesCard = ({ title, employeesData }) => (
     </MainCard>
 );
 
-LatestEmployeesCard.propTypes = {
+LatestBadgesCard.propTypes = {
     title: PropTypes.string,
-    employeesData: PropTypes.object
+    badgesData: PropTypes.object
 };
 
-export default LatestEmployeesCard;
+export default LatestBadgesCard;

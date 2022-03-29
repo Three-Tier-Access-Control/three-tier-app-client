@@ -22,7 +22,7 @@ import { SNACKBAR_OPEN } from 'store/actions';
 import axios from '../../../api/axios';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import LatestPodcastCard from './LatestPodcastCard';
+import LatestBadgesCard from './LatestBadgesCard';
 import LatestVideosCard from './LatestVideosCard';
 
 // ==============================|| ANALYTICS DASHBOARD ||============================== //
@@ -48,14 +48,16 @@ const Analytics = () => {
     const [analyticsData, setAnalyticsData] = useState({});
     const [employeesData, setEmployeesData] = useState({});
     const [usersData, setUsersData] = useState({});
-    const [podcastsData, setPodcastsData] = useState([]);
+    const [badgesData, setBadgesData] = useState([]);
     const [videosData, setVideosData] = useState([]);
 
     useEffect(() => {
         const getDashboardData = async () => {
             try {
                 setLoading(true);
-                const employeesResponse = await axios.get('/employees');
+                const employeesResponse = await axios.get('/employees?limit=3');
+                const badgesResponse = await axios.get('/badges?limit=3');
+                const fingerprintsResponse = await axios.get('/fingerprints?limit=3');
                 const usersResponse = await axios.get('/users');
 
                 // const response2 = await axios.get(`${process.env.REACT_APP_BASE_URL_PRODUCTION}/newsfeed/recents/`);
@@ -63,8 +65,8 @@ const Analytics = () => {
                 // const response4 = await axios.get(`${process.env.REACT_APP_BASE_URL_PRODUCTION}/resources/recent-videos/`);
                 // setAnalyticsData(response.data);
                 setEmployeesData(employeesResponse.data);
+                setBadgesData(badgesResponse.data);
                 setUsersData(usersResponse.data);
-                // setPodcastsData(response3.data.results);
                 // setVideosData(response4.data.results);
 
                 setLoading(false);
@@ -201,11 +203,11 @@ const Analytics = () => {
                         </Grid>
                     )}
 
-                    {/* {podcastsData && podcastsData.length > 0 && (
+                    {badgesData && badgesData.length > 0 && (
                         <Grid item xs={12} lg={6} md={6}>
-                            <LatestPodcastCard title="Latest Podcasts" podcastsData={podcastsData} />
+                            <LatestBadgesCard title="Recently Added RFID Badges" badgesData={badgesData} />
                         </Grid>
-                    )} */}
+                    )}
 
                     {/* {videosData && videosData.length > 0 && (
                         <Grid item xs={12} lg={6} md={6}>
