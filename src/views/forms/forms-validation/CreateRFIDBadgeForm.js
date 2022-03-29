@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
-import { Button, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, Stack, TextField } from '@mui/material';
+import { Button, CircularProgress, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, Stack, TextField } from '@mui/material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
@@ -16,6 +16,7 @@ import handleAxiosError from 'utils/handleAxiosErrors';
 import qs from 'qs';
 import axios from 'api/axios';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 /**
  * 'Enter your email'
@@ -31,6 +32,40 @@ const CreateRFIDBadgeForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const accessToken = useSelector((state) => state.user.accessToken);
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState();
+
+    const [employeesData, setEmployeesData] = useState({});
+
+    useEffect(() => {
+        const getEmployeeData = async () => {
+            try {
+                setLoading(true);
+                const employeesResponse = await axios.get('/employees');
+
+                setEmployeesData(employeesResponse.data);
+
+                setLoading(false);
+                setSuccess(true);
+            } catch (error) {
+                setLoading(false);
+                const errorMsg = handleAxiosError(error);
+                dispatch({
+                    type: SNACKBAR_OPEN,
+                    open: true,
+                    message: errorMsg,
+                    variant: 'alert',
+                    alertSeverity: 'error',
+                    anchorOrigin: {
+                        vertical: 'top',
+                        horizontal: 'right'
+                    }
+                });
+            }
+        };
+        getEmployeeData();
+    }, [dispatch]);
 
     const formik = useFormik({
         initialValues: {
@@ -97,61 +132,72 @@ const CreateRFIDBadgeForm = () => {
 
     return (
         <Grid container spacing={gridSpacing}>
-            <Grid item xs={12}>
-                <MainCard title="Add New RFID Card">
-                    <form onSubmit={formik.handleSubmit}>
-                        <Grid container spacing={gridSpacing}>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    id="uidTag"
-                                    name="uidTag"
-                                    label="UID Tag"
-                                    defaultValue={formik.values.uidTag}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    error={formik.touched.uidTag && Boolean(formik.errors.uidTag)}
-                                    helperText={formik.touched.uidTag && formik.errors.uidTag}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <FormControl sx={{ m: 1, minWidth: 120 }}>
-                                    <InputLabel id="employee-select">Employee</InputLabel>
-                                    <Select
-                                        labelId="employee-select"
-                                        id="employeeId"
-                                        name="employeeId"
-                                        defaultValue={formik.values.employeeId}
-                                        onChange={formik.handleChange}
-                                        label="Age"
-                                    >
-                                        <MenuItem value="">
-                                            <em>None</em>
-                                        </MenuItem>
-                                        <MenuItem value={10}>Ten</MenuItem>
-                                        <MenuItem value={20}>Twenty</MenuItem>
-                                        <MenuItem value={30}>Thirty</MenuItem>
-                                    </Select>
-                                    {formik.errors.employeeId && (
-                                        <FormHelperText error id="standard-weight-helper-text-email-login">
-                                            {formik.errors.employeeId}
-                                        </FormHelperText>
-                                    )}
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Stack direction="row" justifyContent="flex-end">
-                                    <AnimateButton>
-                                        <Button variant="contained" type="submit" disabled={formik.isSubmitting}>
-                                            Submit
-                                        </Button>
-                                    </AnimateButton>
-                                </Stack>
-                            </Grid>
+            {loading && (
+                <Grid item xs={12}>
+                    <Grid container spacing={2} justifyContent="center">
+                        <Grid item>
+                            <CircularProgress />
                         </Grid>
-                    </form>
-                </MainCard>
-            </Grid>
+                    </Grid>
+                </Grid>
+            )}
+
+            {success && (
+                <Grid item xs={12}>
+                    <MainCard title="Add New RFID Card">
+                        <form onSubmit={formik.handleSubmit}>
+                            <Grid container spacing={gridSpacing}>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        id="uidTag"
+                                        name="uidTag"
+                                        label="UID Tag"
+                                        defaultValue={formik.values.uidTag}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        error={formik.touched.uidTag && Boolean(formik.errors.uidTag)}
+                                        helperText={formik.touched.uidTag && formik.errors.uidTag}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <FormControl sx={{ m: 1, minWidth: 120 }}>
+                                        <InputLabel id="employee-select">Employee</InputLabel>
+                                        <Select
+                                            labelId="employee-select"
+                                            id="employeeId"
+                                            name="employeeId"
+                                            defaultValue={formik.values.employeeId}
+                                            onChange={formik.handleChange}
+                                            label="Age"
+                                        >
+                                            {employeesData.employees.map((employee) => (
+                                                <MenuItem value={employee.id}>
+                                                    {employee.id} - {employee.first_name} {employee.last_name}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                        {formik.errors.employeeId && (
+                                            <FormHelperText error id="standard-weight-helper-text-email-login">
+                                                {formik.errors.employeeId}
+                                            </FormHelperText>
+                                        )}
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Stack direction="row" justifyContent="flex-end">
+                                        <AnimateButton>
+                                            <Button variant="contained" type="submit" disabled={formik.isSubmitting}>
+                                                Submit
+                                            </Button>
+                                        </AnimateButton>
+                                    </Stack>
+                                </Grid>
+                            </Grid>
+                        </form>
+                    </MainCard>
+                </Grid>
+            )}
         </Grid>
     );
 };
