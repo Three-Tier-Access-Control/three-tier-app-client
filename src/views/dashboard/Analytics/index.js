@@ -45,6 +45,7 @@ const Analytics = () => {
     const [fingerprintsData, setFingerprintsData] = useState([]);
     const [employeesData, setEmployeesData] = useState({});
     const [usersData, setUsersData] = useState({});
+    const [collectionData, setCollectionData] = useState({});
     const [badgesData, setBadgesData] = useState([]);
 
     useEffect(() => {
@@ -54,12 +55,15 @@ const Analytics = () => {
                 const employeesResponse = await axios.get('/employees?limit=3');
                 const badgesResponse = await axios.get('/badges?limit=3');
                 const fingerprintsResponse = await axios.get('/fingerprints?limit=3');
+                const collectionResponse = await axios.get(`/rekognition/collections/${process.env.REACT_APP_REKOGNITION_COLLECTION_NAME}`);
+
                 const usersResponse = await axios.get('/users');
 
                 setEmployeesData(employeesResponse.data);
                 setBadgesData(badgesResponse.data);
                 setFingerprintsData(fingerprintsResponse.data);
                 setUsersData(usersResponse.data);
+                setCollectionData(collectionResponse.data.data);
 
                 setLoading(false);
                 setSuccess(true);
@@ -119,7 +123,7 @@ const Analytics = () => {
                             <Grid item xs={12} lg={4}>
                                 <RevenueCard
                                     primary="Faces Indexed"
-                                    secondary={fingerprintsData?.length}
+                                    secondary={collectionData?.FaceCount}
                                     content="Total Faces Indexed"
                                     iconPrimary={FaceIcon}
                                     color={theme.palette.orange.dark}
