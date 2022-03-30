@@ -46,8 +46,8 @@ const LatestFingerprintsCard = ({ title, fingerprintsData }) => (
                     <TableRow>
                         <TableCell sx={{ pl: 3 }}>#</TableCell>
                         {/* <TableCell>ID</TableCell> */}
-                        <TableCell>Fingerprint ID</TableCell>
                         <TableCell>Employee</TableCell>
+                        <TableCell>Fingerprint ID</TableCell>
                         <TableCell align="right" sx={{ pr: 3 }}>
                             Date
                         </TableCell>
@@ -66,11 +66,11 @@ const LatestFingerprintsCard = ({ title, fingerprintsData }) => (
                                 />
                             </TableCell> */}
                             <TableCell sx={{ pl: 3 }}>{fingerprint.id}</TableCell>
-                            <TableCell>{fingerprint.fingerprint_id}</TableCell>
 
                             <TableCell>
                                 {fingerprint.employee.first_name} {fingerprint.employee.last_name}
                             </TableCell>
+                            <TableCell>{fingerprint.fingerprint_id}</TableCell>
                             <TableCell align="right" sx={{ pr: 3 }}>
                                 {format(new Date(fingerprint.created_at), 'E, MMM d yyyy')}
                             </TableCell>
