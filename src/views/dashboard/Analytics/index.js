@@ -45,7 +45,7 @@ const Analytics = () => {
     const [fingerprintsData, setFingerprintsData] = useState([]);
     const [employeesData, setEmployeesData] = useState({});
     const [usersData, setUsersData] = useState({});
-    const [collectionData, setCollectionData] = useState({});
+    const [collectionData, setCollectionData] = useState({ FaceCount: 0 });
     const [badgesData, setBadgesData] = useState([]);
 
     useEffect(() => {
