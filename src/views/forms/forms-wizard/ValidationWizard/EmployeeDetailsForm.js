@@ -9,6 +9,10 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 // third-party
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { SNACKBAR_OPEN } from 'store/actions';
+import axios from 'api/axios';
+import { useDispatch, useSelector } from 'react-redux';
+import handleAxiosError from 'utils/handleAxiosErrors';
 
 const validationSchema = yup.object({
     firstName: yup.string().required('First Name is required'),
@@ -19,20 +23,91 @@ const validationSchema = yup.object({
 // ==============================|| FORM WIZARD - VALIDATION  ||============================== //
 
 const EmployeeDetailsForm = ({ employeeData, setEmployeeData, handleNext, setErrorIndex }) => {
+    const dispatch = useDispatch();
+    const accessToken = useSelector((state) => state.user.accessToken);
+
     const formik = useFormik({
         initialValues: {
             firstName: employeeData.firstName,
             lastName: employeeData.lastName,
-            emailAddress: employeeData.emailAddress
+            emailAddress: employeeData.emailAddress,
+            phoneNumber: employeeData.phoneNumber,
+            role: employeeData.role,
+            nationalID: employeeData.nationalID,
+            streetAddress: employeeData.streetAddress,
+            city: employeeData.city
         },
         validationSchema,
-        onSubmit: (values) => {
-            setEmployeeData({
-                firstName: values.firstName,
-                lastName: values.lastName,
-                emailAddress: values.emailAddress
-            });
-            handleNext();
+        onSubmit: async (values) => {
+            try {
+                const { firstName, lastName, emailAddress, phoneNumber, role, nationalID, streetAddress, city } = values;
+
+                const options = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
+                    data: {
+                        first_name: firstName,
+                        last_name: lastName,
+                        email_address: emailAddress,
+                        phone_number: phoneNumber,
+                        national_id: nationalID,
+                        street_address: streetAddress,
+                        role,
+                        city
+                    },
+                    url: '/employees'
+                };
+
+                await axios(options);
+
+                setEmployeeData({
+                    firstName: values.firstName,
+                    lastName: values.lastName,
+                    emailAddress: values.emailAddress,
+                    phoneNumber: values.phoneNumber,
+                    role: values.role,
+                    nationalID: values.nationalID,
+                    streetAddress: values.streetAddress,
+                    city: values.city
+                });
+                dispatch({
+                    type: SNACKBAR_OPEN,
+                    open: true,
+                    message: 'Employee successfully Created!',
+                    variant: 'alert',
+                    alertSeverity: 'success'
+                });
+                handleNext();
+            } catch (error) {
+                const errorMsg = handleAxiosError(error);
+                if (Array.isArray(errorMsg)) {
+                    errorMsg.map((error) =>
+                        dispatch({
+                            type: SNACKBAR_OPEN,
+                            open: true,
+                            message: error,
+                            variant: 'alert',
+                            alertSeverity: 'error',
+                            anchorOrigin: {
+                                vertical: 'top',
+                                horizontal: 'right'
+                            }
+                        })
+                    );
+                } else {
+                    dispatch({
+                        type: SNACKBAR_OPEN,
+                        open: true,
+                        message: errorMsg,
+                        variant: 'alert',
+                        alertSeverity: 'error',
+                        anchorOrigin: {
+                            vertical: 'top',
+                            horizontal: 'right'
+                        }
+                    });
+                }
+            }
         }
     });
 
@@ -85,19 +160,6 @@ const EmployeeDetailsForm = ({ employeeData, setEmployeeData, handleNext, setErr
                     <Grid item xs={12} lg={6}>
                         <TextField
                             fullWidth
-                            id="nationalID"
-                            name="nationalID"
-                            label="National ID"
-                            defaultValue={formik.values.nationalID}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            error={formik.touched.nationalID && Boolean(formik.errors.nationalID)}
-                            helperText={formik.touched.nationalID && formik.errors.nationalID}
-                        />
-                    </Grid>
-                    <Grid item xs={12} lg={6}>
-                        <TextField
-                            fullWidth
                             id="phoneNumber"
                             name="phoneNumber"
                             label="Phone Number"
@@ -106,6 +168,19 @@ const EmployeeDetailsForm = ({ employeeData, setEmployeeData, handleNext, setErr
                             onBlur={formik.handleBlur}
                             error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
                             helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
+                        />
+                    </Grid>
+                    <Grid item xs={12} lg={6}>
+                        <TextField
+                            fullWidth
+                            id="nationalID"
+                            name="nationalID"
+                            label="National ID"
+                            defaultValue={formik.values.nationalID}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            error={formik.touched.nationalID && Boolean(formik.errors.nationalID)}
+                            helperText={formik.touched.nationalID && formik.errors.nationalID}
                         />
                     </Grid>
                     <Grid item xs={12} lg={6}>
@@ -121,19 +196,7 @@ const EmployeeDetailsForm = ({ employeeData, setEmployeeData, handleNext, setErr
                             helperText={formik.touched.role && formik.errors.role}
                         />
                     </Grid>
-                    <Grid item xs={12} lg={6}>
-                        <TextField
-                            fullWidth
-                            id="department"
-                            name="department"
-                            label="Department"
-                            defaultValue={formik.values.department}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            error={formik.touched.department && Boolean(formik.errors.department)}
-                            helperText={formik.touched.department && formik.errors.department}
-                        />
-                    </Grid>
+
                     <Grid item xs={12} lg={6}>
                         <TextField
                             fullWidth
