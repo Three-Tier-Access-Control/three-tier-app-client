@@ -13,7 +13,6 @@ import { gridSpacing } from 'store/constant';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import handleAxiosError from 'utils/handleAxiosErrors';
-import qs from 'qs';
 import axios from 'api/axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,7 +22,7 @@ import { useNavigate } from 'react-router-dom';
 const validationSchema = yup.object({
     firstName: yup.string().required('First Name is required'),
     lastName: yup.string().required('Last Name is required'),
-    emailAddress: yup.string().email('Enter a valid email').required('Email is required')
+    emailAddress: yup.string().email('Enter a valid email address').required('Email Address is required')
 });
 
 // ==============================|| FORM VALIDATION - ADD NEW EMPLOYEE FORM  ||============================== //
@@ -40,7 +39,6 @@ const CreateEmployeeForm = () => {
             emailAddress: '',
             phoneNumber: '',
             department: '',
-            profileImage: '',
             role: '',
             nationalID: '',
             streetAddress: '',
@@ -49,18 +47,7 @@ const CreateEmployeeForm = () => {
         validationSchema,
         onSubmit: async (values) => {
             try {
-                const {
-                    firstName,
-                    lastName,
-                    emailAddress,
-                    phoneNumber,
-                    department,
-                    profileImage,
-                    role,
-                    nationalID,
-                    streetAddress,
-                    city
-                } = values;
+                const { firstName, lastName, emailAddress, phoneNumber, department, role, nationalID, streetAddress, city } = values;
 
                 const options = {
                     method: 'POST',
@@ -70,7 +57,6 @@ const CreateEmployeeForm = () => {
                         last_name: lastName,
                         email_address: emailAddress,
                         phone_number: phoneNumber,
-                        profile_image: profileImage,
                         national_id: nationalID,
                         street_address: streetAddress,
                         department,
@@ -160,7 +146,7 @@ const CreateEmployeeForm = () => {
                                     fullWidth
                                     id="emailAddress"
                                     name="emailAddress"
-                                    label="Email"
+                                    label="Email Address"
                                     defaultValue={formik.values.emailAddress}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
@@ -192,20 +178,6 @@ const CreateEmployeeForm = () => {
                                     onBlur={formik.handleBlur}
                                     error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
                                     helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
-                                />
-                            </Grid>
-                            <Grid item xs={12} lg={6}>
-                                <TextField
-                                    fullWidth
-                                    type="file"
-                                    id="profileImage"
-                                    name="profileImage"
-                                    // label="Profile Image"
-                                    defaultValue={formik.values.profileImage}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    error={formik.touched.profileImage && Boolean(formik.errors.profileImage)}
-                                    helperText={formik.touched.profileImage && formik.errors.profileImage}
                                 />
                             </Grid>
                             <Grid item xs={12} lg={6}>
