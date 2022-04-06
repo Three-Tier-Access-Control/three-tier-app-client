@@ -4,24 +4,24 @@ import { useState } from 'react';
 import { Button, Step, Stepper, StepLabel, Stack, Typography } from '@mui/material';
 
 // project imports
-import AddressForm from './AddressForm';
+import EmployeeDetailsForm from './EmployeeDetailsForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import MainCard from 'ui-component/cards/MainCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 
 // step options
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = ['Employee details', 'Enroll Fingerprint', 'Write to RFID Card', 'Capture Face'];
 
-function getStepContent(step, handleNext, handleBack, setErrorIndex, shippingData, setShippingData, paymentData, setPaymentData) {
+function getStepContent(step, handleNext, handleBack, setErrorIndex, employeeData, setEmployeeData, paymentData, setPaymentData) {
     switch (step) {
         case 0:
             return (
-                <AddressForm
+                <EmployeeDetailsForm
                     handleNext={handleNext}
                     setErrorIndex={setErrorIndex}
-                    shippingData={shippingData}
-                    setShippingData={setShippingData}
+                    employeeData={employeeData}
+                    setEmployeeData={setEmployeeData}
                 />
             );
         case 1:
@@ -45,7 +45,7 @@ function getStepContent(step, handleNext, handleBack, setErrorIndex, shippingDat
 
 const ValidationWizard = () => {
     const [activeStep, setActiveStep] = useState(0);
-    const [shippingData, setShippingData] = useState({});
+    const [employeeData, setEmployeeData] = useState({});
     const [paymentData, setPaymentData] = useState({});
     const [errorIndex, setErrorIndex] = useState(null);
 
@@ -97,7 +97,7 @@ const ValidationWizard = () => {
                                     variant="contained"
                                     color="error"
                                     onClick={() => {
-                                        setShippingData({});
+                                        setEmployeeData({});
                                         setPaymentData({});
                                         setActiveStep(0);
                                     }}
@@ -115,8 +115,8 @@ const ValidationWizard = () => {
                             handleNext,
                             handleBack,
                             setErrorIndex,
-                            shippingData,
-                            setShippingData,
+                            employeeData,
+                            setEmployeeData,
                             paymentData,
                             setPaymentData
                         )}
