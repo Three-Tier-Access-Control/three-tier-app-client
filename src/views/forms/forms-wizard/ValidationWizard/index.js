@@ -5,7 +5,7 @@ import { Button, Step, Stepper, StepLabel, Stack, Typography } from '@mui/materi
 
 // project imports
 import EmployeeDetailsForm from './EmployeeDetailsForm';
-import PaymentForm from './PaymentForm';
+import EnrollFingerprintForm from './EnrollFingerprintForm';
 import Review from './Review';
 import MainCard from 'ui-component/cards/MainCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
@@ -13,7 +13,7 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 // step options
 const steps = ['Employee details', 'Enroll Fingerprint', 'Write to RFID Card', 'Capture Face'];
 
-function getStepContent(step, handleNext, handleBack, setErrorIndex, employeeData, setEmployeeData, paymentData, setPaymentData) {
+function getStepContent(step, handleNext, handleBack, setErrorIndex, employeeData, setEmployeeData, fingerprintData, setFingerprintData) {
     switch (step) {
         case 0:
             return (
@@ -26,12 +26,12 @@ function getStepContent(step, handleNext, handleBack, setErrorIndex, employeeDat
             );
         case 1:
             return (
-                <PaymentForm
+                <EnrollFingerprintForm
                     handleNext={handleNext}
                     handleBack={handleBack}
                     setErrorIndex={setErrorIndex}
-                    paymentData={paymentData}
-                    setPaymentData={setPaymentData}
+                    fingerprintData={fingerprintData}
+                    setFingerprintData={setFingerprintData}
                 />
             );
         case 2:
@@ -44,9 +44,9 @@ function getStepContent(step, handleNext, handleBack, setErrorIndex, employeeDat
 // ==============================|| FORMS WIZARD - BASIC ||============================== //
 
 const ValidationWizard = () => {
-    const [activeStep, setActiveStep] = useState(0);
+    const [activeStep, setActiveStep] = useState(1);
     const [employeeData, setEmployeeData] = useState({});
-    const [paymentData, setPaymentData] = useState({});
+    const [fingerprintData, setFingerprintData] = useState({});
     const [errorIndex, setErrorIndex] = useState(null);
 
     const handleNext = () => {
@@ -98,7 +98,7 @@ const ValidationWizard = () => {
                                     color="error"
                                     onClick={() => {
                                         setEmployeeData({});
-                                        setPaymentData({});
+                                        setFingerprintData({});
                                         setActiveStep(0);
                                     }}
                                     sx={{ my: 3, ml: 1 }}
@@ -117,8 +117,8 @@ const ValidationWizard = () => {
                             setErrorIndex,
                             employeeData,
                             setEmployeeData,
-                            paymentData,
-                            setPaymentData
+                            fingerprintData,
+                            setFingerprintData
                         )}
                         {activeStep === steps.length - 1 && (
                             <Stack direction="row" justifyContent={activeStep !== 0 ? 'space-between' : 'flex-end'}>
