@@ -23,6 +23,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import LatestBadgesCard from './LatestBadgesCard';
 import LatestFingerprintsCard from './LatestFingerprintsCard';
+import useNetworkStatus from 'hooks/useNetworkStatus';
 
 // ==============================|| ANALYTICS DASHBOARD ||============================== //
 
@@ -39,8 +40,9 @@ const Analytics = () => {
     };
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
-    const [err, setErr] = useState();
+    const [error, setError] = useState();
     const dispatch = useDispatch();
+    const status = useNetworkStatus();
 
     const [fingerprintsData, setFingerprintsData] = useState([]);
     const [employeesData, setEmployeesData] = useState({});
@@ -55,15 +57,19 @@ const Analytics = () => {
                 const employeesResponse = await axios.get('/employees?limit=3');
                 const badgesResponse = await axios.get('/badges?limit=3');
                 const fingerprintsResponse = await axios.get('/fingerprints?limit=3');
-                const collectionResponse = await axios.get(`/rekognition/collections/${process.env.REACT_APP_REKOGNITION_COLLECTION_NAME}`);
-
                 const usersResponse = await axios.get('/users');
 
                 setEmployeesData(employeesResponse.data);
                 setBadgesData(badgesResponse.data);
                 setFingerprintsData(fingerprintsResponse.data);
                 setUsersData(usersResponse.data);
-                setCollectionData(collectionResponse.data.data);
+
+                if (status) {
+                    const collectionResponse = await axios.get(
+                        `/rekognition/collections/${process.env.REACT_APP_REKOGNITION_COLLECTION_NAME}`
+                    );
+                    setCollectionData(collectionResponse.data.data);
+                }
 
                 setLoading(false);
                 setSuccess(true);
