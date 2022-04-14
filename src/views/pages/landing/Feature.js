@@ -20,7 +20,7 @@ const FeaturePage = () => {
 
     return (
         <Container>
-            <Grid container spacing={gridSpacing}>
+            <Grid container spacing={gridSpacing} gutterBottom sx={{ mb: 5 }}>
                 <Grid item xs={12} lg={5} md={10}>
                     <Grid container spacing={2} sx={{ mb: 2 }}>
                         <Grid item xs={12}>
