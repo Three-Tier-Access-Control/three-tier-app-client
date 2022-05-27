@@ -47,6 +47,7 @@ const AppContactList = Loadable(lazy(() => import('views/application/contact/Lis
 const AppECommProducts = Loadable(lazy(() => import('views/application/e-commerce/Products')));
 const AppECommProductDetails = Loadable(lazy(() => import('views/application/e-commerce/ProductDetails')));
 const AppECommProductList = Loadable(lazy(() => import('views/application/e-commerce/ProductList')));
+const AppECommEmployeeList = Loadable(lazy(() => import('views/application/e-commerce/EmployeeList')));
 const AppECommCheckout = Loadable(lazy(() => import('views/application/e-commerce/Checkout')));
 
 // forms component routing
@@ -499,7 +500,7 @@ const MainRoutes = {
         },
         {
             path: '/employees',
-            element: <AppEmployeeList />
+            element: <AppECommEmployeeList />
         },
 
         {
