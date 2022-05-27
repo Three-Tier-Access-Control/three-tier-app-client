@@ -29,6 +29,7 @@ const AppProfileListStyle2 = Loadable(lazy(() => import('views/application/users
 
 // application - customer routing
 const AppCustomerList = Loadable(lazy(() => import('views/application/customer/CustomerList')));
+const AppEmployeeList = Loadable(lazy(() => import('views/application/customer/EmployeeList')));
 const AppCustomerOrderList = Loadable(lazy(() => import('views/application/customer/OrderList')));
 const AppCustomerOrderDetails = Loadable(lazy(() => import('views/application/customer/OrderDetails')));
 const AppCustomerProduct = Loadable(lazy(() => import('views/application/customer/Product')));
@@ -196,6 +197,7 @@ const MainRoutes = {
             path: '/customer/customer-list',
             element: <AppCustomerList />
         },
+
         {
             path: '/customer/order-list',
             element: <AppCustomerOrderList />
@@ -495,6 +497,11 @@ const MainRoutes = {
             path: '/dashboard',
             element: <DashboardAnalytics />
         },
+        {
+            path: '/employees',
+            element: <AppEmployeeList />
+        },
+
         {
             path: '/add-new-employee',
             element: <CreateEmployeeForm />
