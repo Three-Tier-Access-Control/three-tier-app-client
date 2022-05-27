@@ -91,12 +91,6 @@ const headCells = [
         align: 'left'
     },
     {
-        id: 'created',
-        numeric: false,
-        label: 'Created',
-        align: 'left'
-    },
-    {
         id: 'email',
         numeric: false,
         label: 'Email',
@@ -113,6 +107,12 @@ const headCells = [
         numeric: true,
         label: 'Status',
         align: 'center'
+    },
+    {
+        id: 'created',
+        numeric: false,
+        label: 'Created',
+        align: 'left'
     }
 ];
 
@@ -491,7 +491,6 @@ const EmployeeList = () => {
                                                     {row.first_name} {row.last_name}
                                                 </Typography>
                                             </TableCell>
-                                            <TableCell>{format(new Date(row.created_at), 'E, MMM d yyyy')}</TableCell>
                                             <TableCell align="right">{row.email_address}</TableCell>
                                             <TableCell align="right">{row.role}</TableCell>
                                             <TableCell align="center">
@@ -502,6 +501,7 @@ const EmployeeList = () => {
                                                     sx={{ borderRadius: '4px', textTransform: 'capitalize' }}
                                                 />
                                             </TableCell>
+                                            <TableCell>{format(new Date(row.created_at), 'E, MMM d yyyy')}</TableCell>
                                             <TableCell align="center" sx={{ pr: 3 }}>
                                                 <IconButton onClick={handleMenuClick} size="large">
                                                     <MoreHorizOutlinedIcon
