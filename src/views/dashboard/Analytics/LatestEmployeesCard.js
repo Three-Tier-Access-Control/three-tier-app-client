@@ -82,7 +82,7 @@ const LatestEmployeesCard = ({ title, employeesData }) => (
 
         <Divider />
         <CardActions sx={{ justifyContent: 'flex-end' }}>
-            <Button component={Link} to="/admin/articles" variant="text" size="small">
+            <Button component={Link} to="/employees" variant="text" size="small">
                 View all Employees
             </Button>
         </CardActions>
