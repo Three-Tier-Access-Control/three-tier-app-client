@@ -1,18 +1,10 @@
-import { useContext } from 'react';
-
-// auth provider
-import FirebaseContext from 'contexts/FirebaseContext';
-// import Auth0Context from 'contexts/Auth0Context';
-// import JWTContext from 'contexts/JWTContext';
-
-// ==============================|| AUTH HOOKS ||============================== //
+import Cookies from 'js-cookie';
 
 const useAuth = () => {
-    const context = useContext(FirebaseContext);
-
-    if (!context) throw new Error('context must be use inside provider');
-
-    return context;
+    if (Cookies.get('isLoggedIn') === undefined) {
+        return { isLoggedIn: false };
+    }
+    return { isLoggedIn: true };
 };
 
 export default useAuth;

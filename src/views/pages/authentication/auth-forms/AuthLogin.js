@@ -42,6 +42,7 @@ import axios from '../../../../api/axios';
 import handleAxiosError from 'utils/handleAxiosErrors';
 import { LOGIN_USER, SNACKBAR_OPEN } from 'store/actions';
 import qs from 'qs';
+import Cookies from 'js-cookie';
 
 // ============================|| LOGIN ||============================ //
 
@@ -159,6 +160,15 @@ const FirebaseLogin = ({ loginProp, ...others }) => {
                             firstName: decoded.first_name,
                             accessToken: token
                         });
+
+                        // SET COOKIES
+
+                        Cookies.set('accessToken', token, { expires: 1 });
+                        Cookies.set('userId', decoded.user_id, { expires: 1 });
+                        Cookies.set('emailAddress', decoded.email_address, { expires: 1 });
+                        Cookies.set('lastName', decoded.last_name, { expires: 1 });
+                        Cookies.set('firstName', decoded.first_name, { expires: 1 });
+                        Cookies.set('isLoggedIn', true, { expires: 1 });
 
                         if (scriptedRef.current) {
                             setStatus({ success: true });

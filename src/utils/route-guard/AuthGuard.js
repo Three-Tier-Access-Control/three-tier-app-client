@@ -13,8 +13,8 @@ import { useEffect } from 'react';
  * @param {PropTypes.node} children children element/node
  */
 const AuthGuard = ({ children }) => {
-    // const { isLoggedIn } = useAuth();
-    const { isLoggedIn } = useSelector((state) => state.user);
+    const { isLoggedIn } = useAuth();
+    // const { isLoggedIn } = useSelector((state) => state.user);
 
     const navigate = useNavigate();
 
