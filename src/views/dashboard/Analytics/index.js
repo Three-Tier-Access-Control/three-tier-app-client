@@ -64,12 +64,12 @@ const Analytics = () => {
                 setFingerprintsData(fingerprintsResponse.data);
                 setUsersData(usersResponse.data);
 
-                if (status) {
-                    const collectionResponse = await axios.get(
-                        `/rekognition/collections/${process.env.REACT_APP_REKOGNITION_COLLECTION_NAME}`
-                    );
-                    setCollectionData(collectionResponse.data.data);
-                }
+                // if (status) {
+                //     const collectionResponse = await axios.get(
+                //         `/rekognition/collections/${process.env.REACT_APP_REKOGNITION_COLLECTION_NAME}`
+                //     );
+                //     setCollectionData(collectionResponse.data.data);
+                // }
 
                 setLoading(false);
                 setSuccess(true);
