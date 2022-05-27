@@ -476,7 +476,11 @@ const EmployeeList = () => {
                                                 onClick={(event) => handleClick(event, row.id)}
                                                 sx={{ cursor: 'pointer' }}
                                             >
-                                                <Avatar src={row.profile_image || DummyUser} size="md" variant="rounded" />
+                                                <Avatar
+                                                    src={row.profile_image ? row.profile_image : DummyUser}
+                                                    size="md"
+                                                    variant="rounded"
+                                                />
                                             </TableCell>
                                             <TableCell component="th" id={labelId} scope="row" sx={{ cursor: 'pointer' }}>
                                                 <Typography
