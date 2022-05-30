@@ -74,7 +74,7 @@ const Subscribe = () => {
                             [theme.breakpoints.down('lg')]: { textAlign: 'center' }
                         }}
                     >
-                        <SubscribeImage src={imgMail} alt="Get Security" />
+                        <SubscribeImage src={imgMail} alt="3 Tier Security" />
                     </Grid>
                     <Grid item xs={12} md={7}>
                         <SubscribeCard>
@@ -90,7 +90,7 @@ const Subscribe = () => {
                                 </Grid>
                                 <Grid item sm={12}>
                                     <Typography variant="body2">
-                                        Subscribe for the latest news &#38; updates of Get Security admin template. We never send spam
+                                        Subscribe for the latest news &#38; updates of 3 Tier Security admin template. We never send spam
                                         newsletters.
                                     </Typography>
                                 </Grid>

@@ -41,7 +41,7 @@ const DemosPage = () => (
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant="body2">
-                            Get Security has customized pages with Material-UI components, Apps, Forms and lots more to explore.
+                            3 Tier Security has customized pages with Material-UI components, Apps, Forms and lots more to explore.
                         </Typography>
                     </Grid>
                 </Grid>
@@ -51,21 +51,21 @@ const DemosPage = () => (
                     <Grid item md={4} sm={6}>
                         <FadeInWhenVisible>
                             <ButtonBase component={Link} to="/dashboard/default" target="_blank">
-                                <img src={imgDemo1} alt="Get Security Dashboard" style={imageStyle} />
+                                <img src={imgDemo1} alt="3 Tier Security Dashboard" style={imageStyle} />
                             </ButtonBase>
                         </FadeInWhenVisible>
                     </Grid>
                     <Grid item md={4} sm={6}>
                         <FadeInWhenVisible>
                             <ButtonBase component={Link} to="/user/social-profile/posts" target="_blank">
-                                <img src={imgDemo2} alt="Get Security Social App" style={imageStyle} />
+                                <img src={imgDemo2} alt="3 Tier Security Social App" style={imageStyle} />
                             </ButtonBase>
                         </FadeInWhenVisible>
                     </Grid>
                     <Grid item md={4} sm={6}>
                         <FadeInWhenVisible>
                             <ButtonBase component={Link} to="/app/mail" target="_blank">
-                                <img src={imgDemo3} alt="Get Security Mail App" style={imageStyle} />
+                                <img src={imgDemo3} alt="3 Tier Security Mail App" style={imageStyle} />
                             </ButtonBase>
                         </FadeInWhenVisible>
                     </Grid>

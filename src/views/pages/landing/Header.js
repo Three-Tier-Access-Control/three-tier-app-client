@@ -203,7 +203,7 @@ const HeaderPage = () => {
                 </Grid>
                 <Grid item xs={12} md={7} sx={{ display: { xs: 'none', md: 'flex' } }}>
                     <Box sx={{ position: 'relative', mt: 8.75 }}>
-                        <HeaderImage src={dashboard} alt="Get Security" />
+                        <HeaderImage src={dashboard} alt="3 Tier Security" />
                         {/* <Box
                             sx={{
                                 position: 'absolute',
@@ -223,7 +223,7 @@ const HeaderPage = () => {
                                     delay: 0.2
                                 }}
                             >
-                                <HeaderAnimationImage src={widget1} alt="Get Security" />
+                                <HeaderAnimationImage src={widget1} alt="3 Tier Security" />
                             </motion.div>
                         </Box>
                         <Box
@@ -246,7 +246,7 @@ const HeaderPage = () => {
                                     delay: 0.4
                                 }}
                             >
-                                <HeaderAnimationImage src={widget2} alt="Get Security" />
+                                <HeaderAnimationImage src={widget2} alt="3 Tier Security" />
                             </motion.div>
                         </Box> */}
                     </Box>
