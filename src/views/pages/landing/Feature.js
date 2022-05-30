@@ -102,8 +102,8 @@ const FeaturePage = () => {
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Typography variant="body2">
-                                                Technology behind 3 Tier Security is less complicated so you can focus on creating the actual
-                                                web applications.
+                                                Technology behind 3 Tier Security is less complicated so you can focus on creating the
+                                                actual web applications.
                                             </Typography>
                                         </Grid>
                                     </Grid>
