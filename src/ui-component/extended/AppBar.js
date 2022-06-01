@@ -25,8 +25,9 @@ import {
 import Logo from 'ui-component/Logo';
 
 // assets
-import { IconBook, IconCreditCard, IconDashboard, IconHome2 } from '@tabler/icons';
+import { IconBook, IconCreditCard, IconDashboard, IconHome2, IconLogin } from '@tabler/icons';
 import MenuIcon from '@mui/icons-material/Menu';
+import useAuth from 'hooks/useAuth';
 
 function ElevationScroll({ children, window }) {
     const theme = useTheme();
@@ -51,6 +52,8 @@ function ElevationScroll({ children, window }) {
 // ==============================|| MINIMAL LAYOUT APP BAR ||============================== //
 
 const AppBar = ({ ...others }) => {
+    const { isLoggedIn } = useAuth();
+
     const [drawerToggle, setDrawerToggle] = useState(false);
     /** Method called on multiple components with different event types */
     const drawerToggler = (open) => (event) => {
@@ -72,13 +75,15 @@ const AppBar = ({ ...others }) => {
                             <Button color="inherit" component={Link} href="/">
                                 Home
                             </Button>
-                            <Button color="inherit" component={RouterLink} to="/dashboard">
-                                Dashboard
-                            </Button>
-
-                            <Button component={RouterLink} to="/login" disableElevation variant="contained" color="secondary">
-                                Login
-                            </Button>
+                            {isLoggedIn ? (
+                                <Button color="inherit" component={RouterLink} to="/dashboard">
+                                    Dashboard
+                                </Button>
+                            ) : (
+                                <Button component={RouterLink} to="/login" disableElevation variant="contained" color="secondary">
+                                    Login
+                                </Button>
+                            )}
                         </Stack>
                         <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
                             <IconButton color="inherit" onClick={drawerToggler(true)} size="large">
@@ -94,7 +99,7 @@ const AppBar = ({ ...others }) => {
                                     onKeyDown={drawerToggler(false)}
                                 >
                                     <List>
-                                        <Link style={{ textDecoration: 'none' }} href="#" target="_blank">
+                                        <Link style={{ textDecoration: 'none' }} href="#">
                                             <ListItemButton component="a">
                                                 <ListItemIcon>
                                                     <IconHome2 />
@@ -102,38 +107,25 @@ const AppBar = ({ ...others }) => {
                                                 <ListItemText primary="Home" />
                                             </ListItemButton>
                                         </Link>
-                                        <Link style={{ textDecoration: 'none' }} href="/login" target="_blank">
-                                            <ListItemButton component="a">
-                                                <ListItemIcon>
-                                                    <IconDashboard />
-                                                </ListItemIcon>
-                                                <ListItemText primary="Dashboard" />
-                                            </ListItemButton>
-                                        </Link>
-                                        <Link
-                                            style={{ textDecoration: 'none' }}
-                                            href="https://codedthemes.gitbook.io/berry"
-                                            target="_blank"
-                                        >
-                                            <ListItemButton component="a">
-                                                <ListItemIcon>
-                                                    <IconBook />
-                                                </ListItemIcon>
-                                                <ListItemText primary="Documentation" />
-                                            </ListItemButton>
-                                        </Link>
-                                        <Link
-                                            style={{ textDecoration: 'none' }}
-                                            href="https://material-ui.com/store/items/berry-react-material-admin/"
-                                            target="_blank"
-                                        >
-                                            <ListItemButton component="a">
-                                                <ListItemIcon>
-                                                    <IconCreditCard />
-                                                </ListItemIcon>
-                                                <ListItemText primary="Purchase Now" />
-                                            </ListItemButton>
-                                        </Link>
+                                        {isLoggedIn ? (
+                                            <Link style={{ textDecoration: 'none' }} href="/dashboard">
+                                                <ListItemButton component="a">
+                                                    <ListItemIcon>
+                                                        <IconDashboard />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary="Dashboard" />
+                                                </ListItemButton>
+                                            </Link>
+                                        ) : (
+                                            <Link style={{ textDecoration: 'none' }} href="/login">
+                                                <ListItemButton component="a">
+                                                    <ListItemIcon>
+                                                        <IconLogin />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary="Login" />
+                                                </ListItemButton>
+                                            </Link>
+                                        )}
                                     </List>
                                 </Box>
                             </Drawer>
