@@ -90,8 +90,8 @@ const Subscribe = () => {
                                 </Grid>
                                 <Grid item sm={12}>
                                     <Typography variant="body2">
-                                        Subscribe for the latest news &#38; updates of Three Tier Security admin template. We never send spam
-                                        newsletters.
+                                        Subscribe for the latest news &#38; updates of Three Tier Security admin template. We never send
+                                        spam newsletters.
                                     </Typography>
                                 </Grid>
                                 <Grid item sm={12}>
