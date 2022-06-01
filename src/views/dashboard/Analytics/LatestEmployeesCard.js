@@ -50,7 +50,7 @@ const LatestEmployeesCard = ({ title, employeesData }) => (
                         <TableCell>Full Name</TableCell>
                         <TableCell>Email Address</TableCell>
                         <TableCell align="right" sx={{ pr: 3 }}>
-                            Date Created
+                            Created
                         </TableCell>
                     </TableRow>
                 </TableHead>

@@ -49,7 +49,7 @@ const LatestBadgesCard = ({ title, badgesData }) => (
                         <TableCell sx={{ pl: 3 }}>Employee</TableCell>
                         <TableCell>UID Tag</TableCell>
                         <TableCell align="right" sx={{ pr: 3 }}>
-                            Date Created
+                            Created
                         </TableCell>
                     </TableRow>
                 </TableHead>

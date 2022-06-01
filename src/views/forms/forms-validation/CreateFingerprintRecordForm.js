@@ -17,13 +17,13 @@ import qs from 'qs';
 import axios from 'api/axios';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 /**
  * 'Enter your email'
  * yup.string Expected 0 arguments, but got 1 */
 const validationSchema = yup.object({
-    fingerprintId: yup.number('Fingerprint ID must be a valid number').required('Fingerprint ID is required'),
-    employeeId: yup.string().required('Employee ID is required')
+    fingerprintId: yup.number('Fingerprint ID must be a valid number').required('Fingerprint ID is required')
 });
 
 // ==============================|| FORM VALIDATION - ADD NEW EMPLOYEE FORM  ||============================== //
@@ -36,16 +36,14 @@ const CreateFingerprintRecordForm = () => {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState();
 
-    const [employeesData, setEmployeesData] = useState({});
+    const [employeesData, setEmployeesData] = useState([]);
 
     useEffect(() => {
         const getEmployeeData = async () => {
             try {
                 setLoading(true);
                 const employeesResponse = await axios.get('/employees');
-
-                setEmployeesData(employeesResponse.data);
-
+                setEmployeesData(employeesResponse.data.results);
                 setLoading(false);
                 setSuccess(true);
             } catch (error) {
@@ -79,12 +77,12 @@ const CreateFingerprintRecordForm = () => {
 
                 const options = {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
+                    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${Cookies.get('accessToken')}` },
                     data: {
                         fingerprint_id: fingerprintId,
-                        employee_id: employeeId
+                        employee: employeeId
                     },
-                    url: '/fingerprints'
+                    url: '/fingerprint/'
                 };
 
                 await axios(options);
@@ -96,7 +94,7 @@ const CreateFingerprintRecordForm = () => {
                     variant: 'alert',
                     alertSeverity: 'success'
                 });
-                navigate('/dashboard');
+                navigate('/fingerprints');
             } catch (error) {
                 const errorMsg = handleAxiosError(error);
                 if (Array.isArray(errorMsg)) {
@@ -172,9 +170,9 @@ const CreateFingerprintRecordForm = () => {
                                             onChange={formik.handleChange}
                                             label="Age"
                                         >
-                                            {employeesData.employees.map((employee) => (
+                                            {employeesData.map((employee) => (
                                                 <MenuItem value={employee.id}>
-                                                    {employee.id} - {employee.first_name} {employee.last_name}
+                                                    {employee.first_name} {employee.last_name}
                                                 </MenuItem>
                                             ))}
                                         </Select>

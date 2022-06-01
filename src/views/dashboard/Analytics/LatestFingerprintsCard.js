@@ -49,7 +49,7 @@ const LatestFingerprintsCard = ({ title, fingerprintsData }) => (
                         <TableCell sx={{ pl: 3 }}>Employee</TableCell>
                         <TableCell>Fingerprint ID</TableCell>
                         <TableCell align="right" sx={{ pr: 3 }}>
-                            Date Created
+                            Created
                         </TableCell>
                     </TableRow>
                 </TableHead>
