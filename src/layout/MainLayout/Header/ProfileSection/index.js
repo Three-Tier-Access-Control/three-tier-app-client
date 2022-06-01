@@ -41,6 +41,7 @@ import DummyUser from 'assets/images/dummy.png';
 // assets
 import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
 import { LOGOUT_USER } from 'store/actions';
+import Cookies from 'js-cookie';
 
 // ==============================|| PROFILE MENU ||============================== //
 
@@ -62,13 +63,17 @@ const ProfileSection = () => {
      * */
     const anchorRef = useRef(null);
     const handleLogout = async () => {
-        try {
-            await dispatch({
-                type: LOGOUT_USER
-            });
-        } catch (err) {
-            console.error(err);
-        }
+        Cookies.remove('userName');
+        Cookies.remove('emailAddress');
+        Cookies.remove('isLoggedIn');
+        Cookies.remove('accessToken');
+        Cookies.remove('userId');
+
+        dispatch({
+            type: LOGOUT_USER
+        });
+
+        navigate('/login');
     };
 
     const handleClose = (event) => {
@@ -171,10 +176,10 @@ const ProfileSection = () => {
                                             <Stack direction="row" spacing={0.5} alignItems="center">
                                                 <Typography variant="h4">Hi,</Typography>
                                                 <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
-                                                    {user?.userName}
+                                                    {Cookies.get('userName')}
                                                 </Typography>
                                             </Stack>
-                                            <Typography variant="subtitle2">Admin User</Typography>
+                                            <Typography variant="subtitle2">{Cookies.get('emailAddress')}</Typography>
                                         </Stack>
                                         <Divider />
                                     </Box>
