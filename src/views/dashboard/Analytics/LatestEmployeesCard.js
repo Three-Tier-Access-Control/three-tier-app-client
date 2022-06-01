@@ -46,11 +46,11 @@ const LatestEmployeesCard = ({ title, employeesData }) => (
                 <TableHead>
                     <TableRow>
                         <TableCell sx={{ pl: 3 }}>#</TableCell>
-                        <TableCell>ID</TableCell>
+                        {/* <TableCell>ID</TableCell> */}
                         <TableCell>Full Name</TableCell>
                         <TableCell>Email Address</TableCell>
                         <TableCell align="right" sx={{ pr: 3 }}>
-                            Date
+                            Date Created
                         </TableCell>
                     </TableRow>
                 </TableHead>
@@ -60,13 +60,13 @@ const LatestEmployeesCard = ({ title, employeesData }) => (
                             <TableCell sx={{ pl: 3 }}>
                                 <CardMedia
                                     component="img"
-                                    image={employee?.profile_image_url || DummyUser}
+                                    image={employee.photo ? employee.photo : DummyUser}
                                     alt={employee.first_name}
                                     title="image"
                                     sx={{ width: 30, height: 'auto' }}
                                 />
                             </TableCell>
-                            <TableCell>{employee.id}</TableCell>
+                            {/* <TableCell>{employee.id}</TableCell> */}
                             <TableCell>
                                 {employee.first_name} {employee.last_name}
                             </TableCell>

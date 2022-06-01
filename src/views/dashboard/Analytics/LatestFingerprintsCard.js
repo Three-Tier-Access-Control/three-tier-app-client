@@ -44,12 +44,12 @@ const LatestFingerprintsCard = ({ title, fingerprintsData }) => (
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell sx={{ pl: 3 }}>#</TableCell>
+                        {/* <TableCell sx={{ pl: 3 }}>#</TableCell> */}
                         {/* <TableCell>ID</TableCell> */}
-                        <TableCell>Employee</TableCell>
+                        <TableCell sx={{ pl: 3 }}>Employee</TableCell>
                         <TableCell>Fingerprint ID</TableCell>
                         <TableCell align="right" sx={{ pr: 3 }}>
-                            Date
+                            Date Created
                         </TableCell>
                     </TableRow>
                 </TableHead>
@@ -65,9 +65,9 @@ const LatestFingerprintsCard = ({ title, fingerprintsData }) => (
                                     sx={{ width: 30, height: 'auto' }}
                                 />
                             </TableCell> */}
-                            <TableCell sx={{ pl: 3 }}>{fingerprint.id}</TableCell>
+                            {/* <TableCell sx={{ pl: 3 }}> </TableCell> */}
 
-                            <TableCell>
+                            <TableCell sx={{ pl: 3 }}>
                                 {fingerprint.employee.first_name} {fingerprint.employee.last_name}
                             </TableCell>
                             <TableCell>{fingerprint.fingerprint_id}</TableCell>

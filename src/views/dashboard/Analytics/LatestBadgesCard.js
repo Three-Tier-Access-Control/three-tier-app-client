@@ -44,12 +44,12 @@ const LatestBadgesCard = ({ title, badgesData }) => (
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell sx={{ pl: 3 }}>#</TableCell>
+                        {/* <TableCell sx={{ pl: 3 }}>#</TableCell> */}
                         {/* <TableCell>ID</TableCell> */}
-                        <TableCell>Employee</TableCell>
+                        <TableCell sx={{ pl: 3 }}>Employee</TableCell>
                         <TableCell>UID Tag</TableCell>
                         <TableCell align="right" sx={{ pr: 3 }}>
-                            Date
+                            Date Created
                         </TableCell>
                     </TableRow>
                 </TableHead>
@@ -65,9 +65,9 @@ const LatestBadgesCard = ({ title, badgesData }) => (
                                     sx={{ width: 30, height: 'auto' }}
                                 />
                             </TableCell> */}
-                            <TableCell sx={{ pl: 3 }}>{badge.id}</TableCell>
+                            {/* <TableCell sx={{ pl: 3 }}> </TableCell> */}
 
-                            <TableCell>
+                            <TableCell sx={{ pl: 3 }}>
                                 {badge.employee.first_name} {badge.employee.last_name}
                             </TableCell>
                             <TableCell>{badge.uid_tag}</TableCell>
