@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
-import { Button, Grid, Stack, TextField } from '@mui/material';
+import { Button, Grid, LinearProgress, Stack, TextField, Typography } from '@mui/material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
@@ -15,7 +15,34 @@ import * as yup from 'yup';
 import handleAxiosError from 'utils/handleAxiosErrors';
 import axios from 'api/axios';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import Cookies from 'js-cookie';
+import { Box } from '@mui/system';
+import PropTypes from 'prop-types';
 
+function LinearProgressWithLabel(props) {
+    return (
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ width: '100%', mr: 1 }}>
+                <LinearProgress variant="determinate" {...props} />
+            </Box>
+            <Box sx={{ minWidth: 35 }}>
+                {
+                    // eslint-disable-next-line react/destructuring-assignment
+                    <Typography variant="body2" color="text.secondary">{`${Math.round(props.value)}%`}</Typography>
+                }
+            </Box>
+        </Box>
+    );
+}
+
+LinearProgressWithLabel.propTypes = {
+    /**
+     * The value of the progress indicator for the determinate and buffer variants.
+     * Value between 0 and 100.
+     */
+    value: PropTypes.number.isRequired
+};
 /**
  * 'Enter your email'
  * yup.string Expected 0 arguments, but got 1 */
@@ -31,6 +58,7 @@ const CreateEmployeeForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const accessToken = useSelector((state) => state.user.accessToken);
+    const [uploadPercentage, setUploadPercentage] = useState(0);
 
     const formik = useFormik({
         initialValues: {
@@ -38,33 +66,53 @@ const CreateEmployeeForm = () => {
             lastName: '',
             emailAddress: '',
             phoneNumber: '',
-            department: '',
             role: '',
-            nationalID: '',
             streetAddress: '',
-            city: ''
+            city: '',
+            file: null
         },
         validationSchema,
         onSubmit: async (values) => {
             try {
-                const { firstName, lastName, emailAddress, phoneNumber, department, role, nationalID, streetAddress, city } = values;
+                const { firstName, lastName, emailAddress, phoneNumber, role, streetAddress, city, file } = values;
 
+                console.log(values);
                 const options = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
+                    headers: {
+                        Authorization: `Bearer ${Cookies.get('accessToken')}`
+                    },
+                    onUploadProgress: (progressEvent) => {
+                        const { loaded, total } = progressEvent;
+                        const percent = Math.floor((loaded * 100) / total);
+                        setUploadPercentage(percent);
+                    },
                     data: {
                         first_name: firstName,
                         last_name: lastName,
                         email_address: emailAddress,
                         phone_number: phoneNumber,
-                        national_id: nationalID,
                         street_address: streetAddress,
-                        department,
                         role,
-                        city
+                        city,
+                        photo: file
                     },
-                    url: '/employees'
+                    url: '/employees/'
                 };
+
+                // const options = {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
+                //     data: {
+                //         first_name: firstName,
+                //         last_name: lastName,
+                //         email_address: emailAddress,
+                //         phone_number: phoneNumber,
+                //         street_address: streetAddress,
+                //         role,
+                //         city
+                //     },
+                //     url: '/employees'
+                // };
 
                 await axios(options);
 
@@ -144,6 +192,41 @@ const CreateEmployeeForm = () => {
                             <Grid item xs={12} lg={6}>
                                 <TextField
                                     fullWidth
+                                    size="small"
+                                    id="fileUrl"
+                                    name="fileUrl"
+                                    defaultValue={formik.values.file}
+                                    onChange={async (event) => {
+                                        const file = event.currentTarget.files[0];
+                                        const fileType = file.type;
+                                        const type = fileType.split('/');
+                                        if (type[0] === 'image') {
+                                            // formData.append('file', file);
+                                            formik.setFieldValue('file', file);
+                                            console.log(formik.values.file);
+                                        } else {
+                                            dispatch({
+                                                type: SNACKBAR_OPEN,
+                                                open: true,
+                                                message: 'Unsupported file format',
+                                                variant: 'alert',
+                                                alertSeverity: 'error',
+                                                anchorOrigin: {
+                                                    vertical: 'top',
+                                                    horizontal: 'right'
+                                                }
+                                            });
+                                        }
+                                    }}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.file && Boolean(formik.errors.file)}
+                                    helperText={(formik.touched.file && formik.errors.file) || "User's Image File"}
+                                    type="file"
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6}>
+                                <TextField
+                                    fullWidth
                                     id="emailAddress"
                                     name="emailAddress"
                                     label="Email Address"
@@ -152,19 +235,6 @@ const CreateEmployeeForm = () => {
                                     onBlur={formik.handleBlur}
                                     error={formik.touched.emailAddress && Boolean(formik.errors.emailAddress)}
                                     helperText={formik.touched.emailAddress && formik.errors.emailAddress}
-                                />
-                            </Grid>
-                            <Grid item xs={12} lg={6}>
-                                <TextField
-                                    fullWidth
-                                    id="nationalID"
-                                    name="nationalID"
-                                    label="National ID"
-                                    defaultValue={formik.values.nationalID}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    error={formik.touched.nationalID && Boolean(formik.errors.nationalID)}
-                                    helperText={formik.touched.nationalID && formik.errors.nationalID}
                                 />
                             </Grid>
                             <Grid item xs={12} lg={6}>
@@ -196,19 +266,6 @@ const CreateEmployeeForm = () => {
                             <Grid item xs={12} lg={6}>
                                 <TextField
                                     fullWidth
-                                    id="department"
-                                    name="department"
-                                    label="Department"
-                                    defaultValue={formik.values.department}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    error={formik.touched.department && Boolean(formik.errors.department)}
-                                    helperText={formik.touched.department && formik.errors.department}
-                                />
-                            </Grid>
-                            <Grid item xs={12} lg={6}>
-                                <TextField
-                                    fullWidth
                                     id="streetAddress"
                                     name="streetAddress"
                                     label="Street Address"
@@ -232,6 +289,13 @@ const CreateEmployeeForm = () => {
                                     helperText={formik.touched.city && formik.errors.city}
                                 />
                             </Grid>
+                            {uploadPercentage > 0 && (
+                                <Grid item xs={12}>
+                                    <Box sx={{ width: '100%' }}>
+                                        <LinearProgressWithLabel value={uploadPercentage} />
+                                    </Box>
+                                </Grid>
+                            )}
                             <Grid item xs={12}>
                                 <Stack direction="row" justifyContent="flex-end">
                                     <AnimateButton>
