@@ -99,33 +99,8 @@ const CreateEmployeeForm = () => {
                         setUploadPercentage(percent);
                     },
                     data: formData,
-                    // {
-                    //     first_name: firstName,
-                    //     last_name: lastName,
-                    //     email_address: emailAddress,
-                    //     phone_number: phoneNumber,
-                    //     street_address: streetAddress,
-                    //     role,
-                    //     city,
-                    //     photo: file
-                    // },
                     url: '/employees/'
                 };
-
-                // const options = {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
-                //     data: {
-                //         first_name: firstName,
-                //         last_name: lastName,
-                //         email_address: emailAddress,
-                //         phone_number: phoneNumber,
-                //         street_address: streetAddress,
-                //         role,
-                //         city
-                //     },
-                //     url: '/employees'
-                // };
 
                 const createEmployeeResponse = await axios(options);
 
