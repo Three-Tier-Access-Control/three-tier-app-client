@@ -109,7 +109,7 @@ const ContactCard = () => {
                 <Grid item xs={12} sx={{ position: 'relative', display: { xs: 'none', lg: 'block' } }}>
                     <img
                         src={mailImg}
-                        alt="3 Tier Security"
+                        alt="Three Tier Security"
                         style={{
                             marginBottom: -0.625,
                             position: 'absolute',

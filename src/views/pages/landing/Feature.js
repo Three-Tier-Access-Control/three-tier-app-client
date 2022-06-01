@@ -34,12 +34,12 @@ const FeaturePage = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant="h2" component="div">
-                                What 3 Tier Security brings to you?
+                                What Three Tier Security brings to you?
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant="body2">
-                                3 Tier Security is a solid dashboard template for your next project, with the following top features.
+                                Three Tier Security is a solid dashboard template for your next project, with the following top features.
                             </Typography>
                         </Grid>
                     </Grid>
@@ -102,7 +102,7 @@ const FeaturePage = () => {
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Typography variant="body2">
-                                                Technology behind 3 Tier Security is less complicated so you can focus on creating the
+                                                Technology behind Three Tier Security is less complicated so you can focus on creating the
                                                 actual web applications.
                                             </Typography>
                                         </Grid>
