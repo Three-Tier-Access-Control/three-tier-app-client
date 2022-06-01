@@ -93,11 +93,11 @@ const CreateEmployeeForm = () => {
                         'content-type': 'multipart/form-data',
                         Authorization: `Bearer ${Cookies.get('accessToken')}`
                     },
-                    // onUploadProgress: (progressEvent) => {
-                    //     const { loaded, total } = progressEvent;
-                    //     const percent = Math.floor((loaded * 100) / total);
-                    //     setUploadPercentage(percent);
-                    // },
+                    onUploadProgress: (progressEvent) => {
+                        const { loaded, total } = progressEvent;
+                        const percent = Math.floor((loaded * 100) / total);
+                        setUploadPercentage(percent);
+                    },
                     data: formData,
                     // {
                     //     first_name: firstName,
