@@ -110,7 +110,7 @@ const CreateEmployeeForm = () => {
                     variant: 'alert',
                     alertSeverity: 'success'
                 });
-                navigate('/dashboard');
+                navigate('/employees');
             } catch (error) {
                 const errorMsg = handleAxiosError(error);
                 if (Array.isArray(errorMsg)) {
