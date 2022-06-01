@@ -76,10 +76,21 @@ const CreateEmployeeForm = () => {
             try {
                 const { firstName, lastName, emailAddress, phoneNumber, role, streetAddress, city, file } = values;
 
+                const formData = new FormData();
+                formData.append('first_name', firstName);
+                formData.append('last_name', lastName);
+                formData.append('email_address', emailAddress);
+                formData.append('phone_number', phoneNumber);
+                formData.append('street_address', streetAddress);
+                formData.append('city', city);
+                formData.append('role', role);
+                formData.append('photo', file);
+
                 console.log(values);
                 const options = {
                     method: 'POST',
                     headers: {
+                        'content-type': 'multipart/form-data',
                         Authorization: `Bearer ${Cookies.get('accessToken')}`
                     },
                     // onUploadProgress: (progressEvent) => {
@@ -87,16 +98,17 @@ const CreateEmployeeForm = () => {
                     //     const percent = Math.floor((loaded * 100) / total);
                     //     setUploadPercentage(percent);
                     // },
-                    data: {
-                        first_name: firstName,
-                        last_name: lastName,
-                        email_address: emailAddress,
-                        phone_number: phoneNumber,
-                        street_address: streetAddress,
-                        role,
-                        city,
-                        photo: file
-                    },
+                    data: formData,
+                    // {
+                    //     first_name: firstName,
+                    //     last_name: lastName,
+                    //     email_address: emailAddress,
+                    //     phone_number: phoneNumber,
+                    //     street_address: streetAddress,
+                    //     role,
+                    //     city,
+                    //     photo: file
+                    // },
                     url: '/employees/'
                 };
 
@@ -197,6 +209,7 @@ const CreateEmployeeForm = () => {
                                     size="small"
                                     id="fileUrl"
                                     name="fileUrl"
+                                    accept="image/png, image/jpeg"
                                     defaultValue={formik.values.file}
                                     onChange={async (event) => {
                                         const file = event.currentTarget.files[0];
