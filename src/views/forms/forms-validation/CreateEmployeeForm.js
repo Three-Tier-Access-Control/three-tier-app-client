@@ -78,6 +78,7 @@ const CreateEmployeeForm = () => {
 
                 console.log(values);
                 const options = {
+                    method: 'POST',
                     headers: {
                         Authorization: `Bearer ${Cookies.get('accessToken')}`
                     },
