@@ -348,7 +348,7 @@ const EmployeeList = () => {
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
     return (
-        <MainCard title="Employee List" content={false}>
+        <MainCard title="Employees" content={false}>
             {loading && (
                 <Grid item xs={12}>
                     <Grid container spacing={2} justifyContent="center">

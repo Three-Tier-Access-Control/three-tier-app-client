@@ -91,9 +91,9 @@ const headCells = [
         align: 'left'
     },
     {
-        id: 'uid_tag',
+        id: 'fingerprint_id',
         numeric: false,
-        label: 'UID Tag',
+        label: 'Fingerprint ID',
         align: 'center'
     },
     {
@@ -215,7 +215,7 @@ EnhancedTableToolbar.propTypes = {
 
 // ==============================|| PRODUCT LIST ||============================== //
 
-const RFIDCardList = () => {
+const FingerprintList = () => {
     const theme = useTheme();
     const dispatch = useDispatch();
 
@@ -241,11 +241,11 @@ const RFIDCardList = () => {
     };
 
     useEffect(() => {
-        const getRFIDCards = async () => {
+        const getFingerprints = async () => {
             try {
                 setError(false);
                 setLoading(true);
-                const rfidCardResponse = await axios.get('/rfid');
+                const rfidCardResponse = await axios.get('/fingerprint');
                 setLoading(false);
                 setSuccess(true);
                 setRows(rfidCardResponse.data.results);
@@ -266,7 +266,7 @@ const RFIDCardList = () => {
                 });
             }
         };
-        getRFIDCards();
+        getFingerprints();
     }, [dispatch]);
 
     const handleSearch = (event) => {
@@ -293,7 +293,7 @@ const RFIDCardList = () => {
             });
             setRows(newRows);
         } else {
-            // getRFIDCards();
+            // getFingerprints();
         }
     };
 
@@ -342,7 +342,7 @@ const RFIDCardList = () => {
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
     return (
-        <MainCard title="RFID Cards" content={false}>
+        <MainCard title="Fingerprints" content={false}>
             {loading && (
                 <Grid item xs={12}>
                     <Grid container spacing={2} justifyContent="center">
@@ -384,7 +384,7 @@ const RFIDCardList = () => {
                                 )
                             }}
                             onChange={handleSearch}
-                            placeholder="Search RFIDCard"
+                            placeholder="Search Fingerprint"
                             value={search}
                             size="small"
                         />
@@ -407,7 +407,7 @@ const RFIDCardList = () => {
                         </Tooltip>
 
                         product add & dialog
-                        <Tooltip title="Add RFIDCard">
+                        <Tooltip title="Add Fingerprint">
                             <Fab color="primary" size="small" sx={{ boxShadow: 'none', ml: 1, width: 32, height: 32, minHeight: 32 }}>
                                 <AddIcon fontSize="small" />
                             </Fab>
@@ -483,7 +483,7 @@ const RFIDCardList = () => {
                                                     {row.employee.first_name} {row.employee.last_name}
                                                 </Typography>
                                             </TableCell>
-                                            <TableCell align="center">{row.uid_tag}</TableCell>
+                                            <TableCell align="center">{row.fingerprint_id}</TableCell>
                                             <TableCell>{format(new Date(row.created), 'E, MMM d yyyy')}</TableCell>
                                             <TableCell align="center" sx={{ pr: 3 }}>
                                                 <IconButton onClick={handleMenuClick} size="large">
@@ -551,4 +551,4 @@ const RFIDCardList = () => {
     );
 };
 
-export default RFIDCardList;
+export default FingerprintList;

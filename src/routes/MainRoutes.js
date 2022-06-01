@@ -49,6 +49,7 @@ const AppECommProductDetails = Loadable(lazy(() => import('views/application/e-c
 const AppECommProductList = Loadable(lazy(() => import('views/application/e-commerce/ProductList')));
 const AppECommEmployeeList = Loadable(lazy(() => import('views/application/e-commerce/EmployeeList')));
 const AppECommRFIDCardList = Loadable(lazy(() => import('views/application/e-commerce/RFIDCardList')));
+const AppECommFingerprintList = Loadable(lazy(() => import('views/application/e-commerce/FingerprintList')));
 const AppECommCheckout = Loadable(lazy(() => import('views/application/e-commerce/Checkout')));
 
 // forms component routing
@@ -506,6 +507,10 @@ const MainRoutes = {
         {
             path: '/badges',
             element: <AppECommRFIDCardList />
+        },
+        {
+            path: '/fingerprints',
+            element: <AppECommFingerprintList />
         },
         {
             path: '/add-new-employee',
