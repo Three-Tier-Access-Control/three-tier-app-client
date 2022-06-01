@@ -132,42 +132,55 @@ const FirebaseLogin = ({ loginProp, ...others }) => {
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({
-                    username: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+                    username: Yup.string().max(255).required('Username is required'),
                     password: Yup.string().max(255).required('Password is required')
                 })}
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting, resetForm }) => {
                     try {
                         const { username, password } = values;
-                        const options = {
+                        const loginRequestConfig = {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                             data: qs.stringify({
                                 username,
                                 password
                             }),
-                            url: 'auth/login'
+                            url: '/auth/jwt/create/'
                         };
-                        const response = await axios(options);
-                        const token = response.data.access_token;
-                        const decoded = jwtDecode(token);
+
+                        const loginResponse = await axios(loginRequestConfig);
+
+                        const accessToken = loginResponse.data.access;
+
+                        const getUserRequestConfig = {
+                            method: 'GET',
+                            url: '/auth/users/me/',
+                            headers: {
+                                Authorization: `Bearer ${accessToken}`
+                            }
+                        };
+
+                        const getUserResponse = await axios(getUserRequestConfig);
+
+                        const userName = getUserResponse.data.username;
+                        const email = getUserResponse.data.email;
+                        const userId = getUserResponse.data.id;
 
                         dispatch({
                             type: LOGIN_USER,
                             isLoggedIn: true,
-                            userId: decoded.user_id,
-                            emailAddress: decoded.email_address,
-                            lastName: decoded.last_name,
-                            firstName: decoded.first_name,
-                            accessToken: token
+                            userId,
+                            emailAddress: email,
+                            userName,
+                            accessToken
                         });
 
                         // SET COOKIES
 
-                        Cookies.set('accessToken', token, { expires: 1 });
-                        Cookies.set('userId', decoded.user_id, { expires: 1 });
-                        Cookies.set('emailAddress', decoded.email_address, { expires: 1 });
-                        Cookies.set('lastName', decoded.last_name, { expires: 1 });
-                        Cookies.set('firstName', decoded.first_name, { expires: 1 });
+                        Cookies.set('accessToken', accessToken, { expires: 1 });
+                        Cookies.set('userId', userId, { expires: 1 });
+                        Cookies.set('emailAddress', email, { expires: 1 });
+                        Cookies.set('userName', userName, { expires: 1 });
                         Cookies.set('isLoggedIn', true, { expires: 1 });
 
                         if (scriptedRef.current) {
@@ -227,7 +240,7 @@ const FirebaseLogin = ({ loginProp, ...others }) => {
                             error={Boolean(touched.username && errors.username)}
                             sx={{ ...theme.typography.customInput }}
                         >
-                            <InputLabel htmlFor="outlined-adornment-username-login">Email Address</InputLabel>
+                            <InputLabel htmlFor="outlined-adornment-username-login">Username</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-username-login"
                                 type="email"
@@ -235,7 +248,7 @@ const FirebaseLogin = ({ loginProp, ...others }) => {
                                 name="username"
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                label="Email Address"
+                                label="Username"
                                 inputProps={{}}
                             />
                             {touched.username && errors.username && (

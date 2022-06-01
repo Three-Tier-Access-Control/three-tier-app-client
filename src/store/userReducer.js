@@ -5,8 +5,7 @@ const initialState = {
     isLoggedIn: true,
     userId: '',
     emailAddress: '',
-    lastName: '',
-    firstName: '',
+    userName: '',
     accessToken: ''
 };
 
@@ -20,8 +19,7 @@ const userReducer = (state = initialState, action) => {
                 isLoggedIn: action.isLoggedIn ? action.isLoggedIn : initialState.isLoggedIn,
                 userId: action.userId ? action.userId : initialState.userId,
                 emailAddress: action.emailAddress ? action.emailAddress : initialState.emailAddress,
-                lastName: action.lastName ? action.lastName : initialState.lastName,
-                firstName: action.firstName ? action.firstName : initialState.firstName,
+                userName: action.userName ? action.userName : initialState.userName,
                 accessToken: action.accessToken ? action.accessToken : initialState.accessToken
             };
         case actionTypes.LOGOUT_USER: {
@@ -29,7 +27,9 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 isLoggedIn: false,
                 emailAddress: '',
-                userId: ''
+                userName: '',
+                userId: '',
+                accessToken: ''
             };
         }
         default:
