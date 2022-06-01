@@ -49,7 +49,8 @@ LinearProgressWithLabel.propTypes = {
 const validationSchema = yup.object({
     firstName: yup.string().required('First Name is required'),
     lastName: yup.string().required('Last Name is required'),
-    emailAddress: yup.string().email('Enter a valid email address').required('Email Address is required')
+    emailAddress: yup.string().email('Enter a valid email address').required('Email Address is required'),
+    phoneNumber: yup.string().required('Phone is required')
 });
 
 // ==============================|| FORM VALIDATION - ADD NEW EMPLOYEE FORM  ||============================== //
@@ -57,7 +58,6 @@ const validationSchema = yup.object({
 const CreateEmployeeForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const accessToken = useSelector((state) => state.user.accessToken);
     const [uploadPercentage, setUploadPercentage] = useState(0);
 
     const formik = useFormik({
@@ -66,7 +66,6 @@ const CreateEmployeeForm = () => {
             lastName: '',
             emailAddress: '',
             phoneNumber: '',
-            role: '',
             streetAddress: '',
             city: '',
             file: null
@@ -74,7 +73,7 @@ const CreateEmployeeForm = () => {
         validationSchema,
         onSubmit: async (values) => {
             try {
-                const { firstName, lastName, emailAddress, phoneNumber, role, streetAddress, city, file } = values;
+                const { firstName, lastName, emailAddress, phoneNumber, streetAddress, city, file } = values;
 
                 const formData = new FormData();
                 formData.append('first_name', firstName);
@@ -83,7 +82,6 @@ const CreateEmployeeForm = () => {
                 formData.append('phone_number', phoneNumber);
                 formData.append('street_address', streetAddress);
                 formData.append('city', city);
-                formData.append('role', role);
                 formData.append('photo', file);
 
                 const options = {
@@ -176,7 +174,7 @@ const CreateEmployeeForm = () => {
                                     helperText={formik.touched.lastName && formik.errors.lastName}
                                 />
                             </Grid>
-                            <Grid item xs={12} lg={6}>
+                            <Grid item xs={12}>
                                 <TextField
                                     fullWidth
                                     id="fileUrl"
@@ -234,19 +232,6 @@ const CreateEmployeeForm = () => {
                                     onBlur={formik.handleBlur}
                                     error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
                                     helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
-                                />
-                            </Grid>
-                            <Grid item xs={12} lg={6}>
-                                <TextField
-                                    fullWidth
-                                    id="role"
-                                    name="role"
-                                    label="Role"
-                                    defaultValue={formik.values.role}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    error={formik.touched.role && Boolean(formik.errors.role)}
-                                    helperText={formik.touched.role && formik.errors.role}
                                 />
                             </Grid>
                             <Grid item xs={12} lg={6}>

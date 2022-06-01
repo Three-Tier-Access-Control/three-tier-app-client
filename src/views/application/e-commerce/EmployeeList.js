@@ -97,9 +97,9 @@ const headCells = [
         align: 'center'
     },
     {
-        id: 'role',
+        id: 'phoneNumber',
         numeric: false,
-        label: 'Role',
+        label: 'Phone Number',
         align: 'center'
     },
     {
@@ -486,7 +486,7 @@ const EmployeeList = () => {
                                                 </Typography>
                                             </TableCell>
                                             <TableCell align="center">{row.email_address}</TableCell>
-                                            <TableCell align="center">{row.role}</TableCell>
+                                            <TableCell align="center">{row.phone_number}</TableCell>
                                             <TableCell>{format(new Date(row.created), 'E, MMM d yyyy')}</TableCell>
                                             <TableCell align="center" sx={{ pr: 3 }}>
                                                 <IconButton onClick={handleMenuClick} size="large">
