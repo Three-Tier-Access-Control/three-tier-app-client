@@ -81,11 +81,11 @@ const CreateEmployeeForm = () => {
                     headers: {
                         Authorization: `Bearer ${Cookies.get('accessToken')}`
                     },
-                    onUploadProgress: (progressEvent) => {
-                        const { loaded, total } = progressEvent;
-                        const percent = Math.floor((loaded * 100) / total);
-                        setUploadPercentage(percent);
-                    },
+                    // onUploadProgress: (progressEvent) => {
+                    //     const { loaded, total } = progressEvent;
+                    //     const percent = Math.floor((loaded * 100) / total);
+                    //     setUploadPercentage(percent);
+                    // },
                     data: {
                         first_name: firstName,
                         last_name: lastName,
@@ -114,8 +114,9 @@ const CreateEmployeeForm = () => {
                 //     url: '/employees'
                 // };
 
-                await axios(options);
+                const createEmployeeResponse = await axios(options);
 
+                console.log(createEmployeeResponse);
                 dispatch({
                     type: SNACKBAR_OPEN,
                     open: true,

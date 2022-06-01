@@ -2,7 +2,7 @@
 import * as actionTypes from './actions';
 
 const initialState = {
-    isLoggedIn: true,
+    isLoggedIn: false,
     userId: '',
     emailAddress: '',
     userName: '',
