@@ -94,18 +94,12 @@ const headCells = [
         id: 'email',
         numeric: false,
         label: 'Email',
-        align: 'right'
+        align: 'center'
     },
     {
         id: 'role',
         numeric: false,
         label: 'Role',
-        align: 'right'
-    },
-    {
-        id: 'status',
-        numeric: true,
-        label: 'Status',
         align: 'center'
     },
     {
@@ -260,7 +254,7 @@ const EmployeeList = () => {
                 const employeesResponse = await axios.get('/employees');
                 setLoading(false);
                 setSuccess(true);
-                setRows(employeesResponse.data.employees);
+                setRows(employeesResponse.data.results);
             } catch (error) {
                 setLoading(false);
                 setError(true);
@@ -369,7 +363,7 @@ const EmployeeList = () => {
                 <Grid container spacing={2} justifyContent="center">
                     <Grid item>
                         <Typography sx={{ m: 1 }} variant="subtitle1" gutterBottom>
-                            There are currently no image employees.
+                            There are currently no employees.
                         </Typography>
                     </Grid>
                 </Grid>
@@ -476,11 +470,7 @@ const EmployeeList = () => {
                                                 onClick={(event) => handleClick(event, row.id)}
                                                 sx={{ cursor: 'pointer' }}
                                             >
-                                                <Avatar
-                                                    src={row.profile_image ? row.profile_image : DummyUser}
-                                                    size="md"
-                                                    variant="rounded"
-                                                />
+                                                <Avatar src={row.photo ? row.photo : DummyUser} size="md" variant="rounded" />
                                             </TableCell>
                                             <TableCell component="th" id={labelId} scope="row" sx={{ cursor: 'pointer' }}>
                                                 <Typography
@@ -495,16 +485,8 @@ const EmployeeList = () => {
                                                     {row.first_name} {row.last_name}
                                                 </Typography>
                                             </TableCell>
-                                            <TableCell align="right">{row.email_address}</TableCell>
-                                            <TableCell align="right">{row.role}</TableCell>
-                                            <TableCell align="center">
-                                                <Chip
-                                                    size="small"
-                                                    label={row.is_active ? 'Active' : 'Inactive'}
-                                                    chipcolor={row.is_active ? 'success' : 'error'}
-                                                    sx={{ borderRadius: '4px', textTransform: 'capitalize' }}
-                                                />
-                                            </TableCell>
+                                            <TableCell align="center">{row.email_address}</TableCell>
+                                            <TableCell align="center">{row.role}</TableCell>
                                             <TableCell>{format(new Date(row.created), 'E, MMM d yyyy')}</TableCell>
                                             <TableCell align="center" sx={{ pr: 3 }}>
                                                 <IconButton onClick={handleMenuClick} size="large">
