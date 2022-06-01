@@ -18,6 +18,7 @@ import { gridSpacing } from 'store/constant';
 import dashboard from 'assets/images/security.webp';
 import widget1 from 'assets/images/landing/widget-1.png';
 import widget2 from 'assets/images/landing/widget-2.png';
+import useAuth from 'hooks/useAuth';
 
 // styles
 const HeaderImage = styled('img')(({ theme }) => ({
@@ -39,6 +40,7 @@ const HeaderAnimationImage = styled('img')({
 
 const HeaderPage = () => {
     const theme = useTheme();
+    const { isLoggedIn } = useAuth();
 
     return (
         <Container>
@@ -112,18 +114,31 @@ const HeaderPage = () => {
                             >
                                 <Grid container spacing={2} sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}>
                                     <Grid item>
-                                        <AnimateButton>
-                                            <Button
-                                                component={RouterLink}
-                                                to="/login"
-                                                target="_blank"
-                                                size="large"
-                                                variant="contained"
-                                                color="secondary"
-                                            >
-                                                Login
-                                            </Button>
-                                        </AnimateButton>
+                                        {isLoggedIn ? (
+                                            <AnimateButton>
+                                                <Button
+                                                    component={RouterLink}
+                                                    to="/dashboard"
+                                                    size="large"
+                                                    variant="contained"
+                                                    color="secondary"
+                                                >
+                                                    Dashboard
+                                                </Button>
+                                            </AnimateButton>
+                                        ) : (
+                                            <AnimateButton>
+                                                <Button
+                                                    component={RouterLink}
+                                                    to="/login"
+                                                    size="large"
+                                                    variant="contained"
+                                                    color="secondary"
+                                                >
+                                                    Login
+                                                </Button>
+                                            </AnimateButton>
+                                        )}
                                     </Grid>
                                 </Grid>
                             </motion.div>
