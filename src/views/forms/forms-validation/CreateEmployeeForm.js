@@ -179,7 +179,6 @@ const CreateEmployeeForm = () => {
                             <Grid item xs={12} lg={6}>
                                 <TextField
                                     fullWidth
-                                    size="small"
                                     id="fileUrl"
                                     name="fileUrl"
                                     accept="image/png, image/jpeg"
