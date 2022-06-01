@@ -86,7 +86,6 @@ const CreateEmployeeForm = () => {
                 formData.append('role', role);
                 formData.append('photo', file);
 
-                console.log(values);
                 const options = {
                     method: 'POST',
                     headers: {
@@ -102,9 +101,8 @@ const CreateEmployeeForm = () => {
                     url: '/employees/'
                 };
 
-                const createEmployeeResponse = await axios(options);
+                await axios(options);
 
-                console.log(createEmployeeResponse);
                 dispatch({
                     type: SNACKBAR_OPEN,
                     open: true,
@@ -193,7 +191,6 @@ const CreateEmployeeForm = () => {
                                         if (type[0] === 'image') {
                                             // formData.append('file', file);
                                             formik.setFieldValue('file', file);
-                                            console.log(formik.values.file);
                                         } else {
                                             dispatch({
                                                 type: SNACKBAR_OPEN,
