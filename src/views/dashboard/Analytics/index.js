@@ -54,12 +54,12 @@ const Analytics = () => {
         const getDashboardData = async () => {
             try {
                 setLoading(true);
-                const employeesResponse = await axios.get('/employees?limit=3');
-                const badgesResponse = await axios.get('/rfid?limit=3');
-                const fingerprintsResponse = await axios.get('/fingerprint?limit=3');
-                const usersResponse = await axios.get('/users');
+                const employeesResponse = await axios.get('/employees?limit=3/');
+                const badgesResponse = await axios.get('/rfid?limit=3/');
+                const fingerprintsResponse = await axios.get('/fingerprint?limit=3/');
+                const usersResponse = await axios.get('/users/');
 
-                setEmployeesData(employeesResponse.data.results);
+                setEmployeesData(employeesResponse.data);
                 setBadgesData(badgesResponse.data.results);
                 setFingerprintsData(fingerprintsResponse.data.results);
                 setUsersData(usersResponse.data);
@@ -200,9 +200,9 @@ const Analytics = () => {
                         </Grid>
                     </Grid>
 
-                    {employeesData?.employees && employeesData?.employees.length > 0 && (
+                    {employeesData?.results && employeesData?.results.length > 0 && (
                         <Grid item xs={12} lg={6} md={6}>
-                            <LatestEmployeesCard title="Recently Added Employees" employeesData={employeesData?.employees} />
+                            <LatestEmployeesCard title="Recently Added Employees" employeesData={employeesData?.results} />
                         </Grid>
                     )}
 
