@@ -55,13 +55,13 @@ const Analytics = () => {
             try {
                 setLoading(true);
                 const employeesResponse = await axios.get('/employees?limit=3');
-                const badgesResponse = await axios.get('/badges?limit=3');
-                const fingerprintsResponse = await axios.get('/fingerprints?limit=3');
+                const badgesResponse = await axios.get('/rfid?limit=3');
+                const fingerprintsResponse = await axios.get('/fingerprint?limit=3');
                 const usersResponse = await axios.get('/users');
 
-                setEmployeesData(employeesResponse.data);
-                setBadgesData(badgesResponse.data);
-                setFingerprintsData(fingerprintsResponse.data);
+                setEmployeesData(employeesResponse.data.results);
+                setBadgesData(badgesResponse.data.results);
+                setFingerprintsData(fingerprintsResponse.data.results);
                 setUsersData(usersResponse.data);
 
                 // if (status) {

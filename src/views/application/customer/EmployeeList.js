@@ -461,7 +461,7 @@ const EmployeeList = () => {
                                                 {row?.street_address}, {row?.city}
                                             </TableCell>
                                             <TableCell align="right">{row?.phone_number}</TableCell>
-                                            <TableCell align="center">{row?.created_at}</TableCell>
+                                            <TableCell align="center">{row?.created}</TableCell>
                                             {/* <TableCell align="center">
                                                 {row.status === 1 && <Chip label="Complete" size="small" chipcolor="success" />}
                                                 {row.status === 2 && <Chip label="Processing" size="small" chipcolor="orange" />}

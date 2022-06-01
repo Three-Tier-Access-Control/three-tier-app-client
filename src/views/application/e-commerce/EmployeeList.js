@@ -505,7 +505,7 @@ const EmployeeList = () => {
                                                     sx={{ borderRadius: '4px', textTransform: 'capitalize' }}
                                                 />
                                             </TableCell>
-                                            <TableCell>{format(new Date(row.created_at), 'E, MMM d yyyy')}</TableCell>
+                                            <TableCell>{format(new Date(row.created), 'E, MMM d yyyy')}</TableCell>
                                             <TableCell align="center" sx={{ pr: 3 }}>
                                                 <IconButton onClick={handleMenuClick} size="large">
                                                     <MoreHorizOutlinedIcon
