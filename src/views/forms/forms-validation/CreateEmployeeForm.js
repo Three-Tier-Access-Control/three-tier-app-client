@@ -13,7 +13,7 @@ import { gridSpacing } from 'store/constant';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import handleAxiosError from 'utils/handleAxiosErrors';
-import axios from 'api/axios';
+import axios, { axiosFace } from 'api/axios';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Cookies from 'js-cookie';
@@ -84,7 +84,7 @@ const CreateEmployeeForm = () => {
                 formData.append('city', city);
                 formData.append('photo', file);
 
-                const options = {
+                const saveEmployeeOptions = {
                     method: 'POST',
                     headers: {
                         'content-type': 'multipart/form-data',
@@ -99,7 +99,27 @@ const CreateEmployeeForm = () => {
                     url: '/employees/'
                 };
 
-                await axios(options);
+                const saveEmployeeResponse = await axios(saveEmployeeOptions);
+                const employeeData = saveEmployeeResponse.data;
+                console.log(employeeData);
+
+                const indexFaceOptions = {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    onUploadProgress: (progressEvent) => {
+                        const { loaded, total } = progressEvent;
+                        const percent = Math.floor((loaded * 100) / total);
+                        setUploadPercentage(percent);
+                    },
+                    data: employeeData,
+                    url: '/faces/'
+                };
+
+                const indexFaceResponse = await axiosFace(indexFaceOptions);
+                const indexFaceData = indexFaceResponse.data;
+                console.log(indexFaceData);
 
                 dispatch({
                     type: SNACKBAR_OPEN,
