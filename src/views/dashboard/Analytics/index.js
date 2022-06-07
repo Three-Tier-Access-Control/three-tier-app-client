@@ -18,7 +18,7 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import FaceIcon from '@mui/icons-material/Face';
 import handleAxiosError from 'utils/handleAxiosErrors';
 import { SNACKBAR_OPEN } from 'store/actions';
-import axios from '../../../api/axios';
+import axios, { axiosFace } from '../../../api/axios';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import LatestBadgesCard from './LatestBadgesCard';
@@ -47,7 +47,7 @@ const Analytics = () => {
     const [fingerprintsData, setFingerprintsData] = useState([]);
     const [employeesData, setEmployeesData] = useState({});
     const [usersData, setUsersData] = useState({});
-    const [collectionData, setCollectionData] = useState({ FaceCount: 0 });
+    const [facesData, setFacesData] = useState([]);
     const [badgesData, setBadgesData] = useState([]);
 
     useEffect(() => {
@@ -64,13 +64,13 @@ const Analytics = () => {
                 setFingerprintsData(fingerprintsResponse.data.results);
                 setUsersData(usersResponse.data);
 
-                // if (status) {
-                //     const collectionResponse = await axios.get(
-                //         `/rekognition/collections/${process.env.REACT_APP_REKOGNITION_COLLECTION_NAME}`
-                //     );
-                //     setCollectionData(collectionResponse.data.data);
-                // }
+                const facesDataOptions = {
+                    method: 'GET',
+                    url: '/faces/'
+                };
 
+                const indexFaceResponse = await axiosFace(facesDataOptions);
+                setFacesData(indexFaceResponse.data);
                 setLoading(false);
                 setSuccess(true);
             } catch (error) {
@@ -129,7 +129,7 @@ const Analytics = () => {
                             <Grid item xs={12} lg={4}>
                                 <RevenueCard
                                     primary="Faces Indexed"
-                                    secondary={collectionData?.FaceCount}
+                                    secondary={facesData.length}
                                     content="Total Faces Indexed"
                                     iconPrimary={FaceIcon}
                                     color={theme.palette.orange.dark}
