@@ -14,7 +14,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import handleAxiosError from 'utils/handleAxiosErrors';
 import qs from 'qs';
-import axios from 'api/axios';
+import axios, { axiosHardware } from 'api/axios';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
@@ -75,7 +75,22 @@ const CreateFingerprintRecordForm = () => {
             try {
                 const { fingerprintId, employeeId } = values;
 
-                const options = {
+                // Enroll Finger
+
+                const enrollOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    data: {
+                        location: fingerprintId
+                    },
+                    url: '/enroll-fingerprint/'
+                };
+
+                await axiosHardware(enrollOptions);
+
+                // Save to Database
+
+                const saveOptions = {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${Cookies.get('accessToken')}` },
                     data: {
@@ -85,7 +100,7 @@ const CreateFingerprintRecordForm = () => {
                     url: '/fingerprint/'
                 };
 
-                await axios(options);
+                await axios(saveOptions);
 
                 dispatch({
                     type: SNACKBAR_OPEN,
