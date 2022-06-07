@@ -12,6 +12,8 @@ import { gridSpacing } from 'store/constant';
 import PaletteTwoToneIcon from '@mui/icons-material/PaletteTwoTone';
 import ReorderTwoToneIcon from '@mui/icons-material/ReorderTwoTone';
 import SpeedTwoToneIcon from '@mui/icons-material/SpeedTwoTone';
+import { FaceTwoTone, FingerprintTwoTone } from '@mui/icons-material';
+import CreditCardTwoTone from '@mui/icons-material/CreditCardTwoTone';
 
 // =============================|| LANDING - FEATURE PAGE ||============================= //
 
@@ -62,7 +64,7 @@ const FeaturePage = () => {
                                                     color: theme.palette.primary.main
                                                 }}
                                             >
-                                                <PaletteTwoToneIcon fontSize="large" />
+                                                <FaceTwoTone fontSize="large" />
                                             </Avatar>
                                         </Grid>
                                         <Grid item xs={12}>
@@ -94,7 +96,7 @@ const FeaturePage = () => {
                                                     color: theme.palette.secondary.main
                                                 }}
                                             >
-                                                <ReorderTwoToneIcon fontSize="large" />
+                                                <CreditCardTwoTone fontSize="large" />
                                             </Avatar>
                                         </Grid>
                                         <Grid item xs={12}>
@@ -126,7 +128,7 @@ const FeaturePage = () => {
                                                     color: theme.palette.success.dark
                                                 }}
                                             >
-                                                <SpeedTwoToneIcon fontSize="large" />
+                                                <FingerprintTwoTone fontSize="large" />
                                             </Avatar>
                                         </Grid>
                                         <Grid item xs={12}>
