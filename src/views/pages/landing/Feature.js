@@ -41,7 +41,8 @@ const FeaturePage = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant="body2">
-                                Three Tier Security is a solid dashboard template for your next project, with the following top features.
+                                Three-tier access control is a portable, high-efficiency, low-cost, and simple-to-use security system to
+                                manage access to protected company resources
                             </Typography>
                         </Grid>
                     </Grid>
@@ -72,8 +73,7 @@ const FeaturePage = () => {
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Typography variant="body2">
-                                                Warm color palates and minimally designed interfaces make the user experience more
-                                                comfortable.
+                                                A way of identifying or confirming an individual&apos;s identity using their face
                                             </Typography>
                                         </Grid>
                                     </Grid>
@@ -104,8 +104,7 @@ const FeaturePage = () => {
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Typography variant="body2">
-                                                Technology behind Three Tier Security is less complicated so you can focus on creating the
-                                                actual web applications.
+                                                A wireless system comprised of two components: tags and readers.
                                             </Typography>
                                         </Grid>
                                     </Grid>
@@ -136,7 +135,7 @@ const FeaturePage = () => {
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Typography variant="body2">
-                                                Code that makes it easier and faster to render the page for your web applications.
+                                                Identification using the impressions made by minute ridge patterns found on fingertips
                                             </Typography>
                                         </Grid>
                                     </Grid>
