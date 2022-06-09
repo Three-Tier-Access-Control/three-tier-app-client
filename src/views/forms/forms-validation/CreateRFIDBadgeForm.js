@@ -72,13 +72,17 @@ const CreateRFIDBadgeForm = () => {
             try {
                 const { employeeId } = values;
 
-                const getRFIDCardOptions = {
-                    method: 'GET',
-                    url: '/read-rfid-card/'
+                const writeToRFIDCardOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    data: {
+                        employee_id: employeeId
+                    },
+                    url: '/write-to-rfid-card/'
                 };
 
-                const getRFIDCardResponse = await axiosHardware(getRFIDCardOptions);
-                const uid = getRFIDCardResponse.data.data.uid;
+                const writeToRFIDCardResponse = await axiosHardware(writeToRFIDCardOptions);
+                const uid = writeToRFIDCardResponse.data.data.uid;
 
                 const saveRFIDCardOptions = {
                     method: 'POST',
