@@ -24,6 +24,7 @@ import { useDispatch } from 'react-redux';
 import LatestBadgesCard from './LatestBadgesCard';
 import LatestFingerprintsCard from './LatestFingerprintsCard';
 import useNetworkStatus from 'hooks/useNetworkStatus';
+import LatestAccessLogsCard from './LatestAccessLogs';
 
 // ==============================|| ANALYTICS DASHBOARD ||============================== //
 
@@ -49,6 +50,7 @@ const Analytics = () => {
     const [usersData, setUsersData] = useState({});
     const [facesData, setFacesData] = useState([]);
     const [badgesData, setBadgesData] = useState([]);
+    const [accessLogsData, setAccessLogsData] = useState({});
 
     useEffect(() => {
         const getDashboardData = async () => {
@@ -58,11 +60,13 @@ const Analytics = () => {
                 const badgesResponse = await axios.get('/rfid?limit=3/');
                 const fingerprintsResponse = await axios.get('/fingerprint?limit=3/');
                 const usersResponse = await axios.get('/users/');
+                const accessLogResponse = await axios.get('/access/');
 
                 setEmployeesData(employeesResponse.data);
                 setBadgesData(badgesResponse.data.results);
                 setFingerprintsData(fingerprintsResponse.data.results);
                 setUsersData(usersResponse.data);
+                setAccessLogsData(accessLogResponse.data);
 
                 const facesDataOptions = {
                     method: 'GET',
@@ -199,6 +203,12 @@ const Analytics = () => {
                             </Grid>
                         </Grid>
                     </Grid>
+
+                    {accessLogsData?.results && accessLogsData?.results.length > 0 && (
+                        <Grid item xs={12} lg={6} md={6}>
+                            <LatestAccessLogsCard title="Recent Access Logs" accessLogsData={accessLogsData?.results} />
+                        </Grid>
+                    )}
 
                     {employeesData?.results && employeesData?.results.length > 0 && (
                         <Grid item xs={12} lg={6} md={6}>
