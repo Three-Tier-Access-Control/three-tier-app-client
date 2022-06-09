@@ -2,7 +2,17 @@
 import { FormattedMessage } from 'react-intl';
 
 // assets
-import { IconUserCheck, IconBasket, IconMessages, IconLayoutKanban, IconMail, IconCalendar, IconNfc } from '@tabler/icons';
+import {
+    IconUserCheck,
+    IconBasket,
+    IconMessages,
+    IconLayoutKanban,
+    IconMail,
+    IconCalendar,
+    IconNfc,
+    IconList,
+    IconUserPlus
+} from '@tabler/icons';
 
 // constant
 const icons = {
@@ -12,7 +22,9 @@ const icons = {
     IconLayoutKanban,
     IconMail,
     IconCalendar,
-    IconNfc
+    IconNfc,
+    IconList,
+    IconUserPlus
 };
 
 // ==============================|| APPLICATION MENU ITEMS ||============================== //
@@ -23,22 +35,16 @@ const application = {
     type: 'group',
     children: [
         {
-            id: 'users',
-            title: <FormattedMessage id="users" />,
+            id: 'employees',
+            title: <FormattedMessage id="employees" />,
             type: 'collapse',
-            icon: icons.IconUserCheck,
+            icon: icons.IconUserPlus,
             children: [
                 {
                     id: 'add-new-employee',
                     title: <FormattedMessage id="add-new-employee" />,
                     type: 'item',
                     url: '/add-new-employee'
-                },
-                {
-                    id: 'employee-list',
-                    title: <FormattedMessage id="employee-list" />,
-                    type: 'item',
-                    url: '/employees'
                 },
                 {
                     id: 'add-new-rfid-card',
@@ -51,6 +57,32 @@ const application = {
                     title: <FormattedMessage id="add-new-fingerprint-record" />,
                     type: 'item',
                     url: '/add-new-fingerprint-record'
+                }
+            ]
+        },
+        {
+            id: 'resources',
+            title: <FormattedMessage id="resources" />,
+            type: 'collapse',
+            icon: icons.IconList,
+            children: [
+                {
+                    id: 'employee-list',
+                    title: <FormattedMessage id="employee-list" />,
+                    type: 'item',
+                    url: '/employees'
+                },
+                {
+                    id: 'rfid-list',
+                    title: <FormattedMessage id="rfid-list" />,
+                    type: 'item',
+                    url: '/badges'
+                },
+                {
+                    id: 'fingerprint-list',
+                    title: <FormattedMessage id="fingerprint-list" />,
+                    type: 'item',
+                    url: '/fingerprints'
                 }
             ]
         }
