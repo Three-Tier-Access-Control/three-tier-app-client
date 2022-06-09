@@ -14,7 +14,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import handleAxiosError from 'utils/handleAxiosErrors';
 import qs from 'qs';
-import axios from 'api/axios';
+import axios, { axiosHardware } from 'api/axios';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
@@ -22,9 +22,7 @@ import Cookies from 'js-cookie';
 /**
  * 'Enter your email'
  * yup.string Expected 0 arguments, but got 1 */
-const validationSchema = yup.object({
-    uidTag: yup.string().required('UID Tag is required')
-});
+const validationSchema = yup.object({});
 
 // ==============================|| FORM VALIDATION - ADD NEW EMPLOYEE FORM  ||============================== //
 
@@ -67,25 +65,32 @@ const CreateRFIDBadgeForm = () => {
 
     const formik = useFormik({
         initialValues: {
-            uidTag: '',
             employeeId: ''
         },
         validationSchema,
         onSubmit: async (values) => {
             try {
-                const { uidTag, employeeId } = values;
+                const { employeeId } = values;
 
-                const options = {
+                const getRFIDCardOptions = {
+                    method: 'GET',
+                    url: '/read-rfid-card/'
+                };
+
+                const getRFIDCardResponse = await axiosHardware(getRFIDCardOptions);
+                const uid = getRFIDCardResponse.data.data.uid;
+
+                const saveRFIDCardOptions = {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${Cookies.get('accessToken')}` },
                     data: {
-                        uid_tag: uidTag,
+                        uid_tag: uid,
                         employee: employeeId
                     },
                     url: '/rfid/'
                 };
 
-                await axios(options);
+                await axios(saveRFIDCardOptions);
 
                 dispatch({
                     type: SNACKBAR_OPEN,
@@ -145,19 +150,6 @@ const CreateRFIDBadgeForm = () => {
                     <MainCard title="Add New RFID Card">
                         <form onSubmit={formik.handleSubmit}>
                             <Grid container spacing={gridSpacing}>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        id="uidTag"
-                                        name="uidTag"
-                                        label="UID Tag"
-                                        defaultValue={formik.values.uidTag}
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                        error={formik.touched.uidTag && Boolean(formik.errors.uidTag)}
-                                        helperText={formik.touched.uidTag && formik.errors.uidTag}
-                                    />
-                                </Grid>
                                 <Grid item xs={12}>
                                     <FormControl fullWidth>
                                         <InputLabel id="employee-select">Employee</InputLabel>
