@@ -47,7 +47,7 @@ const Analytics = () => {
 
     const [fingerprintsData, setFingerprintsData] = useState([]);
     const [employeesData, setEmployeesData] = useState({});
-    const [usersData, setUsersData] = useState({});
+    const [usersData, setUsersData] = useState([]);
     const [facesData, setFacesData] = useState([]);
     const [badgesData, setBadgesData] = useState([]);
     const [accessLogsData, setAccessLogsData] = useState({});
@@ -170,7 +170,7 @@ const Analytics = () => {
                                                 </Grid>
                                                 <Grid item sm zeroMinWidth>
                                                     <Typography variant="h5" align="center">
-                                                        {usersData?.count}
+                                                        {usersData?.length}
                                                     </Typography>
                                                     <Typography variant="subtitle2" align="center">
                                                         ADMIN USERS
