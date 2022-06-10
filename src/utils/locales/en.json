@@ -11,7 +11,7 @@
     "application": "Application",
     "users": "Resources",
     "resources": "Resources",
-    "employees": "Enroll",
+    "employees": "Register",
     "social-profile": "Social Profile",
     "add-new-employee": "Add Employee",
     "add-new-rfid-card": "Assign RFID Card",

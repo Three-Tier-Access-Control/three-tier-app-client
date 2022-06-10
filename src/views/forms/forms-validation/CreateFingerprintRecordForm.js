@@ -43,7 +43,7 @@ const CreateFingerprintRecordForm = () => {
             try {
                 setLoading(true);
                 const employeesResponse = await axios.get('/employees');
-                setEmployeesData(employeesResponse.data.results);
+                setEmployeesData(employeesResponse.data);
                 setLoading(false);
                 setSuccess(true);
             } catch (error) {
