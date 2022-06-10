@@ -435,7 +435,7 @@ const FingerprintList = () => {
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => {
                                     if (typeof row === 'number') return null;
-                                    const isItemSelected = isSelected(row.id);
+                                    const isItemSelected = isSelected(row?.id);
                                     const labelId = `enhanced-table-checkbox-${index}`;
 
                                     return (
@@ -447,7 +447,7 @@ const FingerprintList = () => {
                                             key={index}
                                             selected={isItemSelected}
                                         >
-                                            <TableCell padding="checkbox" sx={{ pl: 3 }} onClick={(event) => handleClick(event, row.id)}>
+                                            <TableCell padding="checkbox" sx={{ pl: 3 }} onClick={(event) => handleClick(event, row?.id)}>
                                                 <Checkbox
                                                     color="primary"
                                                     checked={isItemSelected}
@@ -461,11 +461,11 @@ const FingerprintList = () => {
                                                 component="th"
                                                 id={labelId}
                                                 scope="row"
-                                                onClick={(event) => handleClick(event, row.id)}
+                                                onClick={(event) => handleClick(event, row?.id)}
                                                 sx={{ cursor: 'pointer' }}
                                             >
                                                 <Avatar
-                                                    src={row.employee.photo ? row.employee.photo : DummyUser}
+                                                    src={row?.employee.photo ? row?.employee.photo : DummyUser}
                                                     size="md"
                                                     variant="rounded"
                                                 />
@@ -473,18 +473,18 @@ const FingerprintList = () => {
                                             <TableCell component="th" id={labelId} scope="row" sx={{ cursor: 'pointer' }}>
                                                 <Typography
                                                     component={Link}
-                                                    to={`/fingerprints/${row.id}`}
+                                                    to={`/fingerprints/${row?.id}`}
                                                     variant="subtitle1"
                                                     sx={{
                                                         color: theme.palette.mode === 'dark' ? theme.palette.grey[600] : 'grey.900',
                                                         textDecoration: 'none'
                                                     }}
                                                 >
-                                                    {row.employee.first_name} {row.employee.last_name}
+                                                    {row?.employee.first_name} {row?.employee.last_name}
                                                 </Typography>
                                             </TableCell>
-                                            <TableCell align="center">{row.fingerprint_id}</TableCell>
-                                            <TableCell>{format(new Date(row.created), 'E, MMM d yyyy')}</TableCell>
+                                            <TableCell align="center">{row?.fingerprint_id}</TableCell>
+                                            <TableCell>{format(new Date(row?.created), 'E, MMM d yyyy')}</TableCell>
                                             <TableCell align="center" sx={{ pr: 3 }}>
                                                 <IconButton onClick={handleMenuClick} size="large">
                                                     <MoreHorizOutlinedIcon

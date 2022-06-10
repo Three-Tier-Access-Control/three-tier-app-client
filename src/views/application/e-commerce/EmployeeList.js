@@ -499,8 +499,8 @@ const EmployeeList = () => {
                                             </TableCell>
                                             <TableCell align="center">{row?.email_address}</TableCell>
                                             <TableCell align="center">{row?.phone_number}</TableCell>
-                                            <TableCell align="center">{row?.fingerprint}</TableCell>
-                                            <TableCell align="center">{row?.rfid_card}</TableCell>
+                                            <TableCell align="center">{row?.fingerprint ? row?.fingerprint : '-'}</TableCell>
+                                            <TableCell align="center">{row?.rfid_card ? row?.rfid_card : '-'}</TableCell>
                                             <TableCell>{format(new Date(row?.created), 'E, MMM d yyyy')}</TableCell>
                                             <TableCell align="center" sx={{ pr: 3 }}>
                                                 <IconButton onClick={handleMenuClick} size="large">
