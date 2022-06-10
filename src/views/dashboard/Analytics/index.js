@@ -56,9 +56,9 @@ const Analytics = () => {
         const getDashboardData = async () => {
             try {
                 setLoading(true);
-                const employeesResponse = await axios.get('/employees?limit=3/');
-                const badgesResponse = await axios.get('/rfid?limit=3/');
-                const fingerprintsResponse = await axios.get('/fingerprint?limit=3/');
+                const employeesResponse = await axios.get('/employees/?limit=3');
+                const badgesResponse = await axios.get('/rfid/?limit=3');
+                const fingerprintsResponse = await axios.get('/fingerprint/?limit=3');
                 const usersResponse = await axios.get('/users/');
                 const accessLogResponse = await axios.get('/access/');
 

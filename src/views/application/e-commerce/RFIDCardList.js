@@ -248,7 +248,7 @@ const RFIDCardList = () => {
                 const rfidCardResponse = await axios.get('/rfid');
                 setLoading(false);
                 setSuccess(true);
-                setRows(rfidCardResponse.data.results);
+                setRows(rfidCardResponse.data);
             } catch (error) {
                 setLoading(false);
                 setError(true);
@@ -345,7 +345,7 @@ const RFIDCardList = () => {
         <MainCard title="RFID Cards" content={false}>
             {loading && (
                 <Grid item xs={12}>
-                    <Grid container spacing={2} justifyContent="center">
+                    <Grid container spacing={2} justifyContent="center" sx={{ m: 5 }}>
                         <Grid item>
                             <CircularProgress />
                         </Grid>

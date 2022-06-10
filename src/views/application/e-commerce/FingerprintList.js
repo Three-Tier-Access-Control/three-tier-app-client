@@ -248,7 +248,7 @@ const FingerprintList = () => {
                 const rfidCardResponse = await axios.get('/fingerprint');
                 setLoading(false);
                 setSuccess(true);
-                setRows(rfidCardResponse.data.results);
+                setRows(rfidCardResponse.data);
             } catch (error) {
                 setLoading(false);
                 setError(true);
@@ -345,7 +345,7 @@ const FingerprintList = () => {
         <MainCard title="Fingerprints" content={false}>
             {loading && (
                 <Grid item xs={12}>
-                    <Grid container spacing={2} justifyContent="center">
+                    <Grid container spacing={2} justifyContent="center" sx={{ m: 5 }}>
                         <Grid item>
                             <CircularProgress />
                         </Grid>

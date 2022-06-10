@@ -254,7 +254,7 @@ const EmployeeList = () => {
                 const employeesResponse = await axios.get('/employees');
                 setLoading(false);
                 setSuccess(true);
-                setRows(employeesResponse.data.results);
+                setRows(employeesResponse.data);
             } catch (error) {
                 setLoading(false);
                 setError(true);
@@ -351,7 +351,7 @@ const EmployeeList = () => {
         <MainCard title="Employees" content={false}>
             {loading && (
                 <Grid item xs={12}>
-                    <Grid container spacing={2} justifyContent="center">
+                    <Grid container spacing={2} justifyContent="center" sx={{ m: 5 }}>
                         <Grid item>
                             <CircularProgress />
                         </Grid>
