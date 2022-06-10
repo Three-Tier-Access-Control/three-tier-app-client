@@ -60,7 +60,7 @@ const LatestFingerprintsCard = ({ title, fingerprintsData }) => (
                                 <CardMedia
                                     component="img"
                                     image={fingerprint?.profile_image_url}
-                                    alt={fingerprint.first_name}
+                                    alt={fingerprint?.first_name}
                                     title="image"
                                     sx={{ width: 30, height: 'auto' }}
                                 />
@@ -68,11 +68,11 @@ const LatestFingerprintsCard = ({ title, fingerprintsData }) => (
                             {/* <TableCell sx={{ pl: 3 }}> </TableCell> */}
 
                             <TableCell sx={{ pl: 3 }}>
-                                {fingerprint.employee.first_name} {fingerprint.employee.last_name}
+                                {fingerprint?.employee.first_name} {fingerprint?.employee.last_name}
                             </TableCell>
-                            <TableCell>{fingerprint.fingerprint_id}</TableCell>
+                            <TableCell>{fingerprint?.fingerprint_id}</TableCell>
                             <TableCell align="right" sx={{ pr: 3 }}>
-                                {format(new Date(fingerprint.created), 'E, MMM d yyyy')}
+                                {format(new Date(fingerprint?.created), 'E, MMM d yyyy')}
                             </TableCell>
                         </TableRow>
                     ))}

@@ -60,7 +60,7 @@ const LatestBadgesCard = ({ title, badgesData }) => (
                                 <CardMedia
                                     component="img"
                                     image={badge?.profile_image_url}
-                                    alt={badge.first_name}
+                                    alt={badge?.first_name}
                                     title="image"
                                     sx={{ width: 30, height: 'auto' }}
                                 />
@@ -68,12 +68,12 @@ const LatestBadgesCard = ({ title, badgesData }) => (
                             {/* <TableCell sx={{ pl: 3 }}> </TableCell> */}
 
                             <TableCell sx={{ pl: 3 }}>
-                                {badge.employee.first_name} {badge.employee.last_name}
+                                {badge?.employee.first_name} {badge?.employee.last_name}
                             </TableCell>
-                            <TableCell>{badge.uid_tag}</TableCell>
+                            <TableCell>{badge?.uid_tag}</TableCell>
 
                             <TableCell align="right" sx={{ pr: 3 }}>
-                                {format(new Date(badge.created), 'E, MMM d yyyy')}
+                                {format(new Date(badge?.created), 'E, MMM d yyyy')}
                             </TableCell>
                         </TableRow>
                     ))}

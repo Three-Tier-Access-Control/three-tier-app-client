@@ -60,19 +60,19 @@ const LatestEmployeesCard = ({ title, employeesData }) => (
                             <TableCell sx={{ pl: 3 }}>
                                 <CardMedia
                                     component="img"
-                                    image={employee.photo ? employee.photo : DummyUser}
-                                    alt={employee.first_name}
+                                    image={employee?.photo ? employee?.photo : DummyUser}
+                                    alt={employee?.first_name}
                                     title="image"
                                     sx={{ width: 30, height: 'auto' }}
                                 />
                             </TableCell>
-                            {/* <TableCell>{employee.id}</TableCell> */}
+                            {/* <TableCell>{employee?.id}</TableCell> */}
                             <TableCell>
-                                {employee.first_name} {employee.last_name}
+                                {employee?.first_name} {employee?.last_name}
                             </TableCell>
-                            <TableCell>{employee.email_address}</TableCell>
+                            <TableCell>{employee?.email_address}</TableCell>
                             <TableCell align="right" sx={{ pr: 3 }}>
-                                {format(new Date(employee.created), 'E, MMM d yyyy')}
+                                {format(new Date(employee?.created), 'E, MMM d yyyy')}
                             </TableCell>
                         </TableRow>
                     ))}
