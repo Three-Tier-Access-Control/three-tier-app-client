@@ -357,7 +357,7 @@ const RFIDCardList = () => {
                 <Grid container spacing={2} justifyContent="center">
                     <Grid item>
                         <Typography sx={{ m: 1 }} variant="subtitle1" gutterBottom>
-                            There are currently no fingerprints.
+                            There are currently no RFID Cards.
                         </Typography>
                     </Grid>
                 </Grid>
@@ -367,7 +367,7 @@ const RFIDCardList = () => {
                 <Grid container spacing={2} justifyContent="center">
                     <Grid item>
                         <Typography sx={{ m: 1 }} variant="subtitle1" color="error.main" gutterBottom>
-                            Sorry! Failed to retrieve any fingerprints.
+                            Sorry! Failed to retrieve any RFID Cards.
                         </Typography>
                     </Grid>
                 </Grid>
@@ -473,7 +473,7 @@ const RFIDCardList = () => {
                                             <TableCell component="th" id={labelId} scope="row" sx={{ cursor: 'pointer' }}>
                                                 <Typography
                                                     component={Link}
-                                                    to={`/fingerprints/${row?.id}`}
+                                                    to={`/RFID Cards/${row?.id}`}
                                                     variant="subtitle1"
                                                     sx={{
                                                         color: theme.palette.mode === 'dark' ? theme.palette.grey[600] : 'grey.900',
