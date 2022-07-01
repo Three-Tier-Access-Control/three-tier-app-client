@@ -49,6 +49,7 @@ const AppECommProductDetails = Loadable(lazy(() => import('views/application/e-c
 const AppECommProductList = Loadable(lazy(() => import('views/application/e-commerce/ProductList')));
 const AppECommEmployeeList = Loadable(lazy(() => import('views/application/e-commerce/EmployeeList')));
 const AppECommRFIDCardList = Loadable(lazy(() => import('views/application/e-commerce/RFIDCardList')));
+const AppECommAccessLogsList = Loadable(lazy(() => import('views/application/e-commerce/AccessLogs')));
 const AppECommFingerprintList = Loadable(lazy(() => import('views/application/e-commerce/FingerprintList')));
 const AppECommCheckout = Loadable(lazy(() => import('views/application/e-commerce/Checkout')));
 
@@ -511,6 +512,10 @@ const MainRoutes = {
         {
             path: '/fingerprints',
             element: <AppECommFingerprintList />
+        },
+        {
+            path: '/access-logs',
+            element: <AppECommAccessLogsList />
         },
         {
             path: '/add-new-employee',

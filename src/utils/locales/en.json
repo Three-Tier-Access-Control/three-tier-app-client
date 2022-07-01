@@ -9,6 +9,8 @@
     "chart": "Chart",
 
     "application": "Application",
+    "access": "Access Logs",
+    "access-logs": "Access Logs",
     "users": "Resources",
     "resources": "Resources",
     "employees": "Register",
