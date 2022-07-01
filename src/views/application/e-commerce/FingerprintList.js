@@ -484,7 +484,7 @@ const FingerprintList = () => {
                                                 </Typography>
                                             </TableCell>
                                             <TableCell align="center">{row?.fingerprint_id}</TableCell>
-                                            <TableCell>{format(new Date(row?.created), 'E, MMM d yyyy')}</TableCell>
+                                            <TableCell>{format(new Date(row?.created), "MM/dd/yyyy 'at' h:mm a")}</TableCell>
                                             <TableCell align="center" sx={{ pr: 3 }}>
                                                 <IconButton onClick={handleMenuClick} size="large">
                                                     <MoreHorizOutlinedIcon

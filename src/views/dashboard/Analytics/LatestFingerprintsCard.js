@@ -72,7 +72,7 @@ const LatestFingerprintsCard = ({ title, fingerprintsData }) => (
                             </TableCell>
                             <TableCell>{fingerprint?.fingerprint_id}</TableCell>
                             <TableCell align="right" sx={{ pr: 3 }}>
-                                {format(new Date(fingerprint?.created), 'E, MMM d yyyy')}
+                                {format(new Date(fingerprint?.created), "MM/dd/yyyy 'at' h:mm a")}
                             </TableCell>
                         </TableRow>
                     ))}

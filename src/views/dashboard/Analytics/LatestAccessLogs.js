@@ -91,7 +91,7 @@ const LatestAccessLogsCard = ({ title, accessLogsData }) => (
                                 )}
                             </TableCell>
                             <TableCell align="right" sx={{ pr: 3 }}>
-                                {format(new Date(log.created), 'E, MMM d yyyy')}
+                                {format(new Date(log.created), "MM/dd/yyyy 'at' h:mm a")}
                             </TableCell>
                         </TableRow>
                     ))}

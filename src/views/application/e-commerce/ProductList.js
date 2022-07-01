@@ -432,7 +432,7 @@ const ProductList = () => {
                                                 {row.name}
                                             </Typography>
                                         </TableCell>
-                                        <TableCell>{format(new Date(row.created), 'E, MMM d yyyy')}</TableCell>
+                                        <TableCell>{format(new Date(row.created), "MM/dd/yyyy 'at' h:mm a")}</TableCell>
                                         <TableCell align="right">${row.offerPrice}</TableCell>
                                         <TableCell align="right">${row.salePrice}</TableCell>
                                         <TableCell align="center">

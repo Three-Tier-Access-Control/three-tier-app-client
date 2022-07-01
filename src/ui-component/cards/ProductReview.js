@@ -55,7 +55,7 @@ const ProductReview = ({ avatar, date, name, status, rating, review }) => {
                                 </Tooltip>
                             )}
                         </Stack>
-                        <Typography variant="caption">{format(new Date(date), 'E, MMM d yyyy')}</Typography>
+                        <Typography variant="caption">{format(new Date(date), "MM/dd/yyyy 'at' h:mm a")}</Typography>
                     </Stack>
                 </Stack>
             </Grid>

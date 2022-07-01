@@ -72,7 +72,7 @@ const LatestEmployeesCard = ({ title, employeesData }) => (
                             </TableCell>
                             <TableCell>{employee?.email_address}</TableCell>
                             <TableCell align="right" sx={{ pr: 3 }}>
-                                {format(new Date(employee?.created), 'E, MMM d yyyy')}
+                                {format(new Date(employee?.created), "MM/dd/yyyy 'at' h:mm a")}
                             </TableCell>
                         </TableRow>
                     ))}

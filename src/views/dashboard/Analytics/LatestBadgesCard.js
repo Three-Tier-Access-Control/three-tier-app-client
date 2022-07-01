@@ -73,7 +73,7 @@ const LatestBadgesCard = ({ title, badgesData }) => (
                             <TableCell>{badge?.uid_tag}</TableCell>
 
                             <TableCell align="right" sx={{ pr: 3 }}>
-                                {format(new Date(badge?.created), 'E, MMM d yyyy')}
+                                {format(new Date(badge?.created), "MM/dd/yyyy 'at' h:mm a")}
                             </TableCell>
                         </TableRow>
                     ))}

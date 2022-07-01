@@ -61,7 +61,7 @@ const LatestVideosCard = ({ title, videosData }) => (
                             <TableCell>{video.title}</TableCell>
                             <TableCell>{video.author_name}</TableCell>
                             <TableCell align="right" sx={{ pr: 3 }}>
-                                {format(new Date(video.created), 'E, MMM d yyyy')}
+                                {format(new Date(video.created), "MM/dd/yyyy 'at' h:mm a")}
                             </TableCell>
                         </TableRow>
                     ))}

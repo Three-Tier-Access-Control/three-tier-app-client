@@ -61,7 +61,7 @@ const LatestPodcastCard = ({ title, podcastsData }) => (
                             <TableCell>{podcast.title}</TableCell>
                             <TableCell>{podcast.author_name}</TableCell>
                             <TableCell align="right" sx={{ pr: 3 }}>
-                                {format(new Date(podcast.created), 'E, MMM d yyyy')}
+                                {format(new Date(podcast.created), "MM/dd/yyyy 'at' h:mm a")}
                             </TableCell>
                         </TableRow>
                     ))}
