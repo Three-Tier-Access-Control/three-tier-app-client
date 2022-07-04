@@ -141,10 +141,10 @@ const LayoutsPage = () => {
                                 <LayoutImageWrapper>
                                     <img
                                         src={theme.palette.mode === 'dark' ? imgLayoutDarkGrid : imgLayoutGrid}
-                                        alt="Three Tier Security"
+                                        alt="Three-Tier Security"
                                         style={{ width: '100%' }}
                                     />
-                                    <LayoutImage src={imgLayout1} alt="Three Tier Security" />
+                                    <LayoutImage src={imgLayout1} alt="Three-Tier Security" />
                                 </LayoutImageWrapper>
                             </Grid>
                             <Grid item sm={6}>
@@ -181,10 +181,10 @@ const LayoutsPage = () => {
                                 <LayoutImageWrapper>
                                     <img
                                         src={theme.palette.mode === 'dark' ? imgLayoutDarkGrid : imgLayoutGrid}
-                                        alt="Three Tier Security"
+                                        alt="Three-Tier Security"
                                         style={{ width: '100%' }}
                                     />
-                                    <LayoutImage src={imgLayout2} alt="Three Tier Security" style={{ animationDelay: '1.5s' }} />
+                                    <LayoutImage src={imgLayout2} alt="Three-Tier Security" style={{ animationDelay: '1.5s' }} />
                                 </LayoutImageWrapper>
                             </Grid>
                         </Grid>
@@ -195,10 +195,10 @@ const LayoutsPage = () => {
                                 <LayoutImageWrapper>
                                     <img
                                         src={theme.palette.mode === 'dark' ? imgLayoutDarkGrid : imgLayoutGrid}
-                                        alt="Three Tier Security"
+                                        alt="Three-Tier Security"
                                         style={{ width: '100%' }}
                                     />
-                                    <LayoutImage src={imgLayout3} alt="Three Tier Security" style={{ animationDelay: '3s' }} />
+                                    <LayoutImage src={imgLayout3} alt="Three-Tier Security" style={{ animationDelay: '3s' }} />
                                 </LayoutImageWrapper>
                             </Grid>
                             <Grid item sm={6}>

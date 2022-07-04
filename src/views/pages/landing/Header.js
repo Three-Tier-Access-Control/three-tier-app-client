@@ -71,7 +71,7 @@ const HeaderPage = () => {
                                         lineHeight: 1.4
                                     }}
                                 >
-                                    Three Tier Access Control Security System
+                                    Three-Tier Access Control Security System
                                     {/* <Box component="span" sx={{ ml: 2, color: theme.palette.primary.main }}></Box> */}
                                 </Typography>
                             </motion.div>
@@ -218,7 +218,7 @@ const HeaderPage = () => {
                 </Grid>
                 <Grid item xs={12} md={7} sx={{ display: { xs: 'none', md: 'flex' } }}>
                     <Box sx={{ position: 'relative', mt: 8.75 }}>
-                        <HeaderImage src={dashboard} alt="Three Tier Security" />
+                        <HeaderImage src={dashboard} alt="Three-Tier Security" />
                         {/* <Box
                             sx={{
                                 position: 'absolute',
@@ -238,7 +238,7 @@ const HeaderPage = () => {
                                     delay: 0.2
                                 }}
                             >
-                                <HeaderAnimationImage src={widget1} alt="Three Tier Security" />
+                                <HeaderAnimationImage src={widget1} alt="Three-Tier Security" />
                             </motion.div>
                         </Box>
                         <Box
@@ -261,7 +261,7 @@ const HeaderPage = () => {
                                     delay: 0.4
                                 }}
                             >
-                                <HeaderAnimationImage src={widget2} alt="Three Tier Security" />
+                                <HeaderAnimationImage src={widget2} alt="Three-Tier Security" />
                             </motion.div>
                         </Box> */}
                     </Box>

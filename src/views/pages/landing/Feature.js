@@ -36,7 +36,7 @@ const FeaturePage = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant="h2" component="div">
-                                What Three Tier Security brings to you?
+                                What Three-Tier Security brings to you?
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
