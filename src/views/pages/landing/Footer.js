@@ -67,19 +67,19 @@ const FooterPage = () => {
                                 sx={{ justifyContent: 'flex-end', [theme.breakpoints.down('md')]: { justifyContent: 'center' } }}
                             >
                                 <Grid item>
-                                    <FooterLink href="#" target="_blank" underline="hover">
+                                    <FooterLink href="https://www.instagram.com/shumbaashley/" target="_blank" underline="hover">
                                         <InstagramIcon />
-                                        Blog
+                                        Instagram
                                     </FooterLink>
                                 </Grid>
                                 <Grid item>
-                                    <FooterLink href="#" target="_blank" underline="hover">
+                                    <FooterLink href="https://www.facebook.com/ashleyt.shumba/" target="_blank" underline="hover">
                                         <FacebookIcon />
                                         Facebook
                                     </FooterLink>
                                 </Grid>
                                 <Grid item>
-                                    <FooterLink href="#" target="_blank" underline="hover">
+                                    <FooterLink href="https://www.twitter.com/shumba_ashley" target="_blank" underline="hover">
                                         <TwitterIcon />
                                         Twitter
                                     </FooterLink>
