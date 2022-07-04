@@ -97,7 +97,11 @@ const HeaderPage = () => {
                                         lineHeight: 1.4
                                     }}
                                 >
-                                    Electronic Engineering Honors Project - Ashley Tinashe Shumba (N0161480F)
+                                    Electronic Engineering Honors Project
+                                    <br />
+                                    Ashley Tinashe Shumba (N0161480F)
+                                    <br />
+                                    2021-2022
                                 </Typography>
                             </motion.div>
                         </Grid>
