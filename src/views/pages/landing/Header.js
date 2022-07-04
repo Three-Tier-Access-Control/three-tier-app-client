@@ -64,7 +64,7 @@ const HeaderPage = () => {
                                 }}
                             >
                                 <Typography
-                                    variant="h1"
+                                    variant="h2"
                                     sx={{
                                         fontSize: { xs: '2.25rem', sm: '3rem', md: '4rem' },
                                         fontWeight: 900,
@@ -97,7 +97,7 @@ const HeaderPage = () => {
                                         lineHeight: 1.4
                                     }}
                                 >
-                                    HONORS PROJECT - Ashley Tinashe Shumba (N0161480F)
+                                    Electronic Engineering Honors Project - Ashley Tinashe Shumba (N0161480F)
                                 </Typography>
                             </motion.div>
                         </Grid>
