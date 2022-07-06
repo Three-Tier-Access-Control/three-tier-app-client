@@ -65,30 +65,30 @@ const CreateRFIDBadgeForm = () => {
 
     const formik = useFormik({
         initialValues: {
-            employeeId: ''
+            employeeId: '',
+            uidTag: ''
         },
         validationSchema,
         onSubmit: async (values) => {
             try {
-                const { employeeId } = values;
+                const { employeeId, uidTag } = values;
 
-                const writeToRFIDCardOptions = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    data: {
-                        employee_id: employeeId
-                    },
-                    url: '/write-to-rfid-card/'
-                };
+                // const writeToRFIDCardOptions = {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     data: {
+                //         employee_id: employeeId
+                //     },
+                //     url: '/write-to-rfid-card/'
+                // };
 
-                const writeToRFIDCardResponse = await axiosHardware(writeToRFIDCardOptions);
-                const uid = writeToRFIDCardResponse.data.data.uid;
+                // const writeToRFIDCardResponse = await axiosHardware(writeToRFIDCardOptions);
 
                 const saveRFIDCardOptions = {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${Cookies.get('accessToken')}` },
                     data: {
-                        uid_tag: uid,
+                        uid_tag: uidTag,
                         employee: employeeId
                     },
                     url: '/rfid/'
@@ -154,6 +154,19 @@ const CreateRFIDBadgeForm = () => {
                     <MainCard title="Add New RFID Card">
                         <form onSubmit={formik.handleSubmit}>
                             <Grid container spacing={gridSpacing}>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        id="uidTag"
+                                        name="uidTag"
+                                        label="UID Tag"
+                                        defaultValue={formik.values.uidTag}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        error={formik.touched.uidTag && Boolean(formik.errors.uidTag)}
+                                        helperText={formik.touched.uidTag && formik.errors.uidTag}
+                                    />
+                                </Grid>
                                 <Grid item xs={12}>
                                     <FormControl fullWidth>
                                         <InputLabel id="employee-select">Employee</InputLabel>
