@@ -77,16 +77,16 @@ const CreateFingerprintRecordForm = () => {
 
                 // Enroll Finger
 
-                const enrollOptions = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    data: {
-                        location: fingerprintId
-                    },
-                    url: '/enroll-fingerprint/'
-                };
+                // const enrollOptions = {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     data: {
+                //         location: fingerprintId
+                //     },
+                //     url: '/enroll-fingerprint/'
+                // };
 
-                await axiosHardware(enrollOptions);
+                // await axiosHardware(enrollOptions);
 
                 // Save to Database
 
