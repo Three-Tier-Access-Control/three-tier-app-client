@@ -86,7 +86,7 @@ const FooterPage = () => {
                                     </FooterLink>
                                 </Grid>
                                 <Grid item>
-                                    <FooterLink href="https://www.twitter.com/shumba_ashley" target="_blank" underline="hover">
+                                    <FooterLink href="https://github.com/Three-Tier-Access-Control" target="_blank" underline="hover">
                                         <GithubIcon />
                                         Github
                                     </FooterLink>
