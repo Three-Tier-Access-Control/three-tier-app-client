@@ -9,6 +9,7 @@ import { gridSpacing } from 'store/constant';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import GithubIcon from '@mui/icons-material/GitHub';
 
 import logoDark from 'assets/images/logo.png';
 
@@ -82,6 +83,12 @@ const FooterPage = () => {
                                     <FooterLink href="https://www.twitter.com/shumba_ashley" target="_blank" underline="hover">
                                         <TwitterIcon />
                                         Twitter
+                                    </FooterLink>
+                                </Grid>
+                                <Grid item>
+                                    <FooterLink href="https://www.twitter.com/shumba_ashley" target="_blank" underline="hover">
+                                        <GithubIcon />
+                                        Github
                                     </FooterLink>
                                 </Grid>
                             </Grid>
